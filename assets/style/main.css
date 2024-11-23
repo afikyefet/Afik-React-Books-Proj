@@ -1,0 +1,214 @@
+/* Setup */
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+/* Vars */
+:root {
+	--clr1: rgb(96, 107, 91);
+	--clr2: rgb(120, 99, 110);
+
+	--clr1bg: rgb(153, 166, 149);
+	--clr1bg-light: rgb(205, 221, 200);
+	--clr2bg: rgb(233, 206, 221);
+	--clr2bg-light: rgb(253, 236, 246);
+
+	--gray1: rgb(240, 240, 240);
+	--gray2: rgb(155, 155, 155);
+	--gray3: rgb(44, 44, 44);
+}
+
+
+/* Base */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	color: var(--gray3);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: .5em 0 .5em;
+	font-family: 'Edu VIC WA NT Beginner', cursive;
+}
+
+p {
+	margin: 0 0 1em;
+}
+
+a {
+	text-decoration: none;
+	color: unset;
+	cursor: pointer;
+}
+
+
+
+/* Dont stretch my Media */
+img,
+embed,
+video,
+object {
+	max-width: 100%
+}
+
+/* Simple and useful CSS Debugging Technique */
+.debug * {
+	outline: 1px solid gold
+}
+
+
+.about nav a {
+	margin-right: 10px;
+}
+
+button {
+	cursor: pointer;
+	background-color: var(--clr2bg);
+	margin: 0.5em;
+	border: 0;
+	padding: 0.5em 0.8em;
+	border-radius: 4px;
+}
+
+button:hover {
+	background-color: var(--clr2);
+	color: white;
+	transition: 0.3s;
+}
+
+input:focus {
+	background-color: var(--clr1bg);
+	transition: background-color 1s;
+}
+
+
+/* Helpers */
+
+/* flex helpers */
+
+.flex {
+	display: flex;
+}
+
+.flex.flex-column {
+	flex-direction: column;
+}
+
+.flex.justify-center {
+	justify-content: center;
+}
+
+.flex.justify-between {
+	justify-content: space-between;
+}
+
+.flex.align-center {
+	align-items: center;
+}
+
+/* text helpers */
+
+.colored-text {
+	color: var(--clr1);
+}
+
+/* list helpers */
+
+.clean-list {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+/* font awsome */
+
+.fa {
+	font-family: fa;
+}
+
+.fa.fa-facebook::before {
+	content: "\f39e";
+}
+
+.fa.fa-twitter::before {
+	content: "\f099";
+}
+
+.fa.fa-dribbble::before {
+	content: "\f17d";
+}
+
+.fa.fa-behance::before {
+	content: "\f1b4";
+}
+
+/* Layout */
+.main-layout {
+	display: grid;
+	grid-template-columns: 1.6rem 1fr 1.6rem;
+}
+
+.main-layout>* {
+	grid-column: 2;
+}
+
+.main-layout .full {
+	grid-column: 1/-1;
+}
+
+.container {
+	max-width: 800px;
+	padding: 1em;
+	margin: auto;
+}
+
+
+
+/* Components */
+
+.home {
+	font-size: 1em;
+}
+
+.app-header {
+	background-color: var(--clr1);
+	color: var(--clr2bg-light);
+
+}
+
+.header-container {
+	display: flex;
+	align-items: center;
+
+}
+
+.header-container h1 {
+	flex-grow: 1;
+}
+
+.app-nav {
+	display: flex;
+	gap: 15px;
+}
+
+
+a.active {
+	color: rgb(241, 212, 241);
+	font-weight: 600;
+	text-decoration: underline;
+}
+
+
+@media (max-width: 720px) {
+	.app-header {
+		color: var(--clr2bg-light);
+	}
+}
