@@ -1,4 +1,4 @@
-const books = [
+export const booksReady = [
 	{
 		id: "OXeMG8wNskc",
 		title: "metus hendrerit",
@@ -366,6 +366,28 @@ const books = [
 		},
 	},
 ]
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 const booksNew = [
 	{
