@@ -1,0 +1,46 @@
+.book-preview {
+	width: 180px;
+	height: 240px;
+	margin: 10px;
+	/* background-color: white; */
+	border-radius: 12px;
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	text-align: left;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+	/* color: white; */
+}
+
+.book-preview:hover {
+	transition: 2s ease-in;
+	background: linear-gradient(
+		to bottom,
+		rgba(255, 255, 255, 0) 0%,
+		rgba(255, 255, 255, 0.9) 100%
+	);
+}
+
+.book-preview img {
+	/* width: 120px; */
+	height: 240px;
+	z-index: -1;
+	margin-bottom: -5px;
+	align-self: center;
+	position: absolute;
+	/* margin-bottom: auto; */
+	border-radius: 15px;
+}
+
+.book-preview * {
+	margin: 0px 3px;
+	padding: 0px 3px;
+	text-align: left;
+}
+
+.book-preview .book-title {
+	font-size: 1em;
+	/* margin-bottom: auto; */
+	/* background-color: lightgray; */
+}

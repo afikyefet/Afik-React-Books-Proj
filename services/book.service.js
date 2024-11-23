@@ -54,7 +54,8 @@ function getEmptyBook() {
 
 function _CreateBooks() {
 	let books = storageService.query(STORAGE_KEY)
-	books = books || books.length ? books : booksReady
+
+	books = !books || !books.length ? booksReady : books
 	storageService.saveAll(STORAGE_KEY, books)
 }
 
