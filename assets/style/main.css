@@ -1,22 +1,23 @@
 /* Setup */
-@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url("https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+@import url(./AppHeader.css);
 
 /* Vars */
 :root {
-	--clr1: rgb(96, 107, 91);
-	--clr2: rgb(120, 99, 110);
+	--clr1: rgb(111, 161, 175);
+	--clr2: rgb(237, 224, 255);
 
-	--clr1bg: rgb(153, 166, 149);
-	--clr1bg-light: rgb(205, 221, 200);
-	--clr2bg: rgb(233, 206, 221);
-	--clr2bg-light: rgb(253, 236, 246);
+	--clr1bg: rgb(149, 166, 165);
+	--clr1bg-light: rgb(200, 221, 221);
+	--clr2bg: rgb(255, 255, 255);
+	--clr2bg-light: rgb(244, 236, 253);
 
 	--gray1: rgb(240, 240, 240);
 	--gray2: rgb(155, 155, 155);
 	--gray3: rgb(44, 44, 44);
 }
-
 
 /* Base */
 
@@ -27,6 +28,7 @@
 body {
 	margin: 0;
 	color: var(--gray3);
+	font-family: "Funnel Sans", sans-serif;
 }
 
 h1,
@@ -35,8 +37,8 @@ h3,
 h4,
 h5,
 h6 {
-	margin: .5em 0 .5em;
-	font-family: 'Edu VIC WA NT Beginner', cursive;
+	margin: 0.5em 0 0.5em;
+	font-family: "Funnel Sans", sans-serif;
 }
 
 p {
@@ -49,21 +51,18 @@ a {
 	cursor: pointer;
 }
 
-
-
 /* Dont stretch my Media */
 img,
 embed,
 video,
 object {
-	max-width: 100%
+	max-width: 100%;
 }
 
 /* Simple and useful CSS Debugging Technique */
 .debug * {
-	outline: 1px solid gold
+	outline: 1px solid gold;
 }
-
 
 .about nav a {
 	margin-right: 10px;
@@ -88,7 +87,6 @@ input:focus {
 	background-color: var(--clr1bg);
 	transition: background-color 1s;
 }
-
 
 /* Helpers */
 
@@ -156,7 +154,7 @@ input:focus {
 	grid-template-columns: 1.6rem 1fr 1.6rem;
 }
 
-.main-layout>* {
+.main-layout > * {
 	grid-column: 2;
 }
 
@@ -170,8 +168,6 @@ input:focus {
 	margin: auto;
 }
 
-
-
 /* Components */
 
 .home {
@@ -181,13 +177,11 @@ input:focus {
 .app-header {
 	background-color: var(--clr1);
 	color: var(--clr2bg-light);
-
 }
 
 .header-container {
 	display: flex;
 	align-items: center;
-
 }
 
 .header-container h1 {
@@ -199,16 +193,18 @@ input:focus {
 	gap: 15px;
 }
 
-
 a.active {
-	color: rgb(241, 212, 241);
+	color: rgb(255, 255, 255);
 	font-weight: 600;
 	text-decoration: underline;
 }
 
-
 @media (max-width: 720px) {
 	.app-header {
 		color: var(--clr2bg-light);
+	}
+
+	.header-container {
+		flex-direction: column;
 	}
 }

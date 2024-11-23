@@ -1,0 +1,8 @@
+.nav-list {
+	list-style-type: none;
+	display: flex;
+}
+
+.NavLink {
+	margin-right: 20px;
+}
