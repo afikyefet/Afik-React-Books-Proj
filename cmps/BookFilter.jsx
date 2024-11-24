@@ -7,6 +7,7 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 
 	useEffect(() => {
 		onSetFilterDebounce(filterByToEdit)
+		console.log(filterByToEdit)
 	}, [filterByToEdit])
 
 	function handleChange({ target }) {
@@ -20,38 +21,62 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 				value = target.checked
 				break
 		}
+
+		// if (!field.includes(".")) {
+		// 	const [obj, nested] = field.split(".")
+		// 	// console.log(obj)
+		// 	setFilterByToEdit((prevFilter) => ({
+		// 		...prevFilter,
+		// 		[obj]: { [nested]: value },
+		// 	}))
+		// } else {
+		// 	setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+		// }
+
+		// if (!field.includes(".")) {
 		setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+		// } else {
+		// 	const [obj, nested] = field.split(".")
+		// 	// console.log(obj)
+		// 	setFilterByToEdit((prevFilter) => ({
+		// 		...prevFilter,
+		// 		[obj]: { [nested]: value },
+		// 	}))
+		// }
 	}
 
 	function onSubmitFilter(ev) {
 		ev.preventDefault()
 		onSetFilter(filterByToEdit)
 	}
-
+	const { title, listPrice } = filterByToEdit
 	return (
 		<section className="book-filter">
 			<form onSubmit={onSubmitFilter}>
 				<label htmlFor="title-filter">
 					Title:{" "}
 					<input
+						value={title}
 						type="text"
-						id="title-filter"
-						name="title-filter"
-						className="title-filter"
+						id="title"
+						name="title"
+						className="title"
 						onChange={handleChange}
+						placeholder="Enter title"
 					/>
 				</label>{" "}
-				<label htmlFor="price-filter">
+				{/* <label htmlFor="price-filter">
 					Price:{" "}
 					<input
+						value={listPrice.amount}
 						type="range"
 						max={200}
 						id="price-filter"
-						name="price-filter"
+						name="listPrice.amount"
 						className="price-filter"
 						onChange={handleChange}
 					/>
-				</label>
+				</label> */}
 				<button>Submit</button>
 			</form>
 		</section>

@@ -33,13 +33,17 @@ export function BookIndex() {
 	}
 
 	function onSetFilter(filterBy) {
-		setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }))
+		setFilterBy((prevFilter) => ({
+			...prevFilter,
+			...filterBy,
+		}))
+		console.log(filterBy, "TEST")
 	}
 
 	if (!books) return <div>Loading....</div>
 	return (
 		<section className="books-index">
-			{/* <BooksFilter defaultFilter={filterBy} onSetFilter={onSetFilter} /> */}
+			<BooksFilter defaultFilter={filterBy} onSetFilter={onSetFilter} />
 			<h1>This is the full book list</h1>
 			<BookList books={books} onRemoveBook={onRemoveBook} />
 		</section>
