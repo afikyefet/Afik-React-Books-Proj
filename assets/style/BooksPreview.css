@@ -11,6 +11,7 @@
 	text-align: left;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 	/* color: white; */
+	cursor: pointer;
 }
 
 .book-preview:hover {
@@ -43,4 +44,15 @@
 	font-size: 1em;
 	/* margin-bottom: auto; */
 	/* background-color: lightgray; */
+}
+
+.book-preview button {
+	text-align: center;
+	/* width: 42px; */
+	height: 20px;
+	font-weight: 700;
+	font-size: 11px;
+	border-radius: 14px;
+	/* background-color: black; */
+	/* color: white; */
 }

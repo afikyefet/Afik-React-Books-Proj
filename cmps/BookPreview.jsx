@@ -1,4 +1,4 @@
-export function BookPreview({ book }) {
+export function BookPreview({ book, onRemoveBook }) {
 	return (
 		<div className="book-preview">
 			<img src={book.thumbnail} alt="book cover" />
@@ -12,6 +12,11 @@ export function BookPreview({ book }) {
 				{book.listPrice.amount} {book.listPrice.currencyCode}
 			</h4>
 			<h5> {book.listPrice.isOnSale ? "On Sale!" : ""}</h5>
+			<div className="btn-container">
+				<button className="book-del" onClick={() => onRemoveBook(book.id)}>
+					delete
+				</button>
+			</div>
 		</div>
 	)
 }

@@ -8,6 +8,7 @@ export function BookIndex() {
 
 	useEffect(() => {
 		loadBooks()
+		console.log(books)
 	}, [])
 
 	function loadBooks() {
@@ -22,6 +23,7 @@ export function BookIndex() {
 			.remove(bookId)
 			.then(() => {
 				setBooks((books) => books.filter((book) => book.id !== bookId))
+				console.log("boook was deleted, ", books)
 			})
 			.catch((err) => {
 				console.log("Problems removing book:", err)
