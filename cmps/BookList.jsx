@@ -1,18 +1,18 @@
+import { BooksFilter } from "./BookFilter.jsx"
 import { BookPreview } from "./BookPreview.jsx"
 
 export function BookList({ books, onRemoveBook }) {
-	console.log(books)
+	// console.log(books)
 
 	return (
-		<ul className="book-list">
-			{books.map((book) => (
-				<li key={book.id}>
-					<BookPreview book={book} onRemoveBook={onRemoveBook} />
-					{/* <button className="book-del" onClick={() => onRemoveBook(book.id)}>
-						X
-					</button> */}
-				</li>
-			))}
-		</ul>
+		<React.Fragment>
+			<ul className="book-list">
+				{books.map((book) => (
+					<li key={book.id}>
+						<BookPreview book={book} onRemoveBook={onRemoveBook} />
+					</li>
+				))}
+			</ul>
+		</React.Fragment>
 	)
 }

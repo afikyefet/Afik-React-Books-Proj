@@ -8,13 +8,34 @@ export const bookService = {
 	remove,
 	save,
 	getEmptyBook,
+	getDefaultFilter,
 }
 
 const STORAGE_KEY = "BooksDB"
 _CreateBooks()
 
 function query(filterBy = {}) {
-	return storageService.query(STORAGE_KEY)
+	return storageService.query(STORAGE_KEY).then((books) => {
+		if (filterBy.title) {
+			const regExp = new RegExp(filterBy.title, "i")
+			books = books.filter((book) => regExp.test(book.title))
+		}
+		// if (filterBy.listPrice.amount) {
+		// 	books = books.filter()
+		// }
+	})
+
+	// return storageService.query(CAR_KEY)
+	//     .then(cars => {
+	//         if (filterBy.txt) {
+	//             const regExp = new RegExp(filterBy.txt, 'i')
+	//             cars = cars.filter(car => regExp.test(car.vendor))
+	//         }
+	//         if (filterBy.minSpeed) {
+	//             cars = cars.filter(car => car.speed >= filterBy.minSpeed)
+	//         }
+	//         return cars
+	//     })
 }
 
 function get(bookId) {
@@ -52,11 +73,17 @@ function getEmptyBook() {
 	}
 }
 
-function _CreateBooks() {
-	let books = storageService.query(STORAGE_KEY)
+function getDefaultFilter() {
+	return { title: "", listPrice: { amount: 0 } }
+}
 
-	books = !books || !books.length ? booksReady : books
-	storageService.saveAll(STORAGE_KEY, books)
+async function _CreateBooks() {
+	let books = await storageService.query(STORAGE_KEY)
+
+	if (!books || !books.length) {
+		books = booksReady
+	}
+	utilService.saveToStorage(STORAGE_KEY, books)
 }
 
 function _createCar(book = {}) {
