@@ -5,9 +5,11 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 	const [filterByToEdit, setFilterByToEdit] = useState(defaultFilter)
 	const onSetFilterDebounce = useRef(debounce(onSetFilter)).current
 
+	console.log(defaultFilter, "hahahaha")
+
 	useEffect(() => {
 		onSetFilterDebounce(filterByToEdit)
-		console.log(filterByToEdit)
+		// console.log(filterByToEdit)
 	}, [filterByToEdit])
 
 	function handleChange({ target }) {
@@ -38,14 +40,14 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 		ev.preventDefault()
 		onSetFilter(filterByToEdit)
 	}
-	const { title, listPrice } = filterByToEdit
+	// const { title, listPrice } = filterByToEdit
 	return (
 		<section className="book-filter">
 			<form onSubmit={onSubmitFilter}>
 				<label htmlFor="title-filter">
 					Title:{" "}
 					<input
-						value={title}
+						value={filterByToEdit.title}
 						type="text"
 						id="title"
 						name="title"

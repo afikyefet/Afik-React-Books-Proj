@@ -38,7 +38,6 @@ export function BookIndex() {
 			...prevFilter,
 			...filterBy,
 		}))
-		console.log(filterBy, "TEST")
 	}
 
 	if (!books) return <div>Loading....</div>

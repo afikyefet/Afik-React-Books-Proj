@@ -14,24 +14,32 @@ export const bookService = {
 const STORAGE_KEY = "BooksDB"
 _CreateBooks()
 
-function query({ filterBy = {} }) {
-	return storageService.query(STORAGE_KEY)
-	// .then((books) => {
-	// 	if (filterBy.title) {
-	// 		const regExp = new RegExp(filterBy.title, "i")
-	// 		books = books.filter((book) => regExp.test(book.title))
-	// 	}
-	// -------------
-	// if (filterBy.listPrice.amount) {
-	// 	books = books.filter((book) => {
-	// 		book.listPrice.amount >= filterBy.listPrice.amount
-	// console.log(book, book.listPrice.amount, "TESTESTES")
-	// 	})
-	// }
+function query(filterBy = {}) {
+	console.log(filterBy, "blablabla")
+
+	return storageService.query(STORAGE_KEY).then((books) => {
+		console.log(books)
+		if (filterBy.title !== "") {
+			const regExp = new RegExp(filterBy.title, "i")
+			books = books.filter((book) => regExp.test(book.title))
+		}
+		// if (filterBy.listPrice.amount !== 0) {
+		// 	books = books.filter((book) => {
+		// 		book.listPrice.amount >= filterBy.listPrice.amount
+		// console.log(book, book.listPrice.amount, "TESTESTES")
+		// 	})
+		// }
+		return books
+	})
+
+	return books
+	// ---------
 	// --------------
-	// 	return
-	// 	books
-	// })
+}
+
+function getDefaultFilter() {
+	// return { title: "", listPrice: { amount: 200 } }
+	return { title: "" }
 }
 // return storageService.query(CAR_KEY)
 //     .then(cars => {
@@ -87,11 +95,6 @@ function getEmptyBook() {
 			isOnSale: false,
 		},
 	}
-}
-
-function getDefaultFilter() {
-	// return { title: "", listPrice: { amount: 200 } }
-	return { title: "" }
 }
 
 async function _CreateBooks() {
