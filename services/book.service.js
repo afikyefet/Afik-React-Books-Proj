@@ -15,20 +15,17 @@ const STORAGE_KEY = "BooksDB"
 _CreateBooks()
 
 function query(filterBy = {}) {
-	console.log(filterBy, "blablabla")
-
 	return storageService.query(STORAGE_KEY).then((books) => {
-		console.log(books)
 		if (filterBy.title !== "") {
 			const regExp = new RegExp(filterBy.title, "i")
 			books = books.filter((book) => regExp.test(book.title))
 		}
-		// if (filterBy.listPrice.amount !== 0) {
-		// 	books = books.filter((book) => {
-		// 		book.listPrice.amount >= filterBy.listPrice.amount
-		// console.log(book, book.listPrice.amount, "TESTESTES")
-		// 	})
-		// }
+
+		if (filterBy.listPrice.amount > 0) {
+			books = books.filter((book) => {
+				return book.listPrice.amount < filterBy.listPrice.amount
+			})
+		}
 		return books
 	})
 
@@ -38,24 +35,8 @@ function query(filterBy = {}) {
 }
 
 function getDefaultFilter() {
-	// return { title: "", listPrice: { amount: 200 } }
-	return { title: "" }
+	return { title: "", listPrice: { amount: 200 } }
 }
-// return storageService.query(CAR_KEY)
-//     .then(cars => {
-//         if (filterBy.txt) {
-//             const regExp = new RegExp(filterBy.txt, 'i')
-//             cars = cars.filter(car => regExp.test(car.vendor))
-//         }
-//         if (filterBy.minSpeed) {
-//             cars = cars.filter(car => car.speed >= filterBy.minSpeed)
-//         }
-//         return cars
-//     })
-
-// function query() {
-// 	return storageService.query(STORAGE_KEY)
-// }
 
 function get(bookId) {
 	return storageService.get(STORAGE_KEY, bookId)

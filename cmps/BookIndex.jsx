@@ -18,7 +18,6 @@ export function BookIndex() {
 			.query(filterBy)
 			.then(setBooks)
 			.catch((err) => console.error("Could not get books list from db ", err))
-		// console.log(books)
 	}
 
 	function onRemoveBook(bookId) {
@@ -26,7 +25,7 @@ export function BookIndex() {
 			.remove(bookId)
 			.then(() => {
 				setBooks((books) => books.filter((book) => book.id !== bookId))
-				console.log("book was deleted, ", books)
+				console.log("book was deleted")
 			})
 			.catch((err) => {
 				console.log("Problems removing book:", err)
@@ -45,7 +44,9 @@ export function BookIndex() {
 		<section className="book-index">
 			<BooksFilter defaultFilter={filterBy} onSetFilter={onSetFilter} />
 			<section className="add-btn">
-				<Link to="/book/edit">Add Book</Link>
+				<button>
+					<Link to="/book/edit">Add Book</Link>
+				</button>
 			</section>
 			<h1>This is the full book list</h1>
 			<BookList books={books} onRemoveBook={onRemoveBook} />

@@ -4,8 +4,7 @@ const { useState, useEffect, useRef } = React
 export function BooksFilter({ defaultFilter, onSetFilter }) {
 	const [filterByToEdit, setFilterByToEdit] = useState(defaultFilter)
 	const onSetFilterDebounce = useRef(debounce(onSetFilter)).current
-
-	console.log(defaultFilter, "hahahaha")
+	const rangeRef = useRef().current
 
 	useEffect(() => {
 		onSetFilterDebounce(filterByToEdit)
@@ -23,17 +22,18 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 				value = target.checked
 				break
 		}
-		setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+		// setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
 
-		// if (!field.includes(".")) {
-		// } else {
-		// 	const [obj, nested] = field.split(".")
-		// 	// console.log(obj)
-		// 	setFilterByToEdit((prevFilter) => ({
-		// 		...prevFilter,
-		// 		[obj]: { [nested]: value },
-		// 	}))
-		// }
+		if (!field.includes(".")) {
+			setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+		} else {
+			const [obj, nested] = field.split(".")
+			// console.log(obj)
+			setFilterByToEdit((prevFilter) => ({
+				...prevFilter,
+				[obj]: { [nested]: value },
+			}))
+		}
 	}
 
 	function onSubmitFilter(ev) {
@@ -44,6 +44,7 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 	return (
 		<section className="book-filter">
 			<form onSubmit={onSubmitFilter}>
+				<h1>Books filter</h1>
 				<label htmlFor="title-filter">
 					Title:{" "}
 					<input
@@ -56,10 +57,11 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 						placeholder="Enter title"
 					/>
 				</label>{" "}
-				{/* <label htmlFor="price-filter">
-					Price:{" "}
+				<label htmlFor="price-filter">
+					Price:
 					<input
-						value={listPrice.amount}
+						ref={rangeRef}
+						value={filterByToEdit.listPrice.amount}
 						type="range"
 						max={200}
 						id="price-filter"
@@ -67,7 +69,8 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 						className="price-filter"
 						onChange={handleChange}
 					/>
-				</label> */}
+					{filterByToEdit.listPrice.amount}
+				</label>
 				<button>Submit</button>
 			</form>
 		</section>

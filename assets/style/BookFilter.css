@@ -1,0 +1,11 @@
+.book-filter form {
+	margin: 0 auto;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid var(--clr2);
+	padding: 2px;
+	border-radius: 12px;
+}

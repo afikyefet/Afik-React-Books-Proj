@@ -8,6 +8,7 @@
 @import url(./BookDetails.css);
 @import url(./BooksEdit.css);
 @import url(./BookIndex.css);
+@import url(./BookFilter.css);
 
 /* Vars */
 :root {
