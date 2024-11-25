@@ -5,6 +5,7 @@
 @import url(./AppHeader.css);
 @import url(./BooksPreview.css);
 @import url(./BooksList.css);
+@import url(./BookDetails.css);
 
 /* Vars */
 :root {

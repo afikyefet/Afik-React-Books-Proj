@@ -15,20 +15,23 @@ const STORAGE_KEY = "BooksDB"
 _CreateBooks()
 
 function query({ filterBy = {} }) {
-	return storageService.query(STORAGE_KEY).then((books) => {
-		if (filterBy.title) {
-			const regExp = new RegExp(filterBy.title, "i")
-			books = books.filter((book) => regExp.test(book.title))
-		}
-		// if (filterBy.listPrice.amount) {
-		// 	books = books.filter((book) => {
-		// 		book.listPrice.amount >= filterBy.listPrice.amount
-		// console.log(book, book.listPrice.amount, "TESTESTES")
-		// 	})
-		// }
-		return
-		books
-	})
+	return storageService.query(STORAGE_KEY)
+	// .then((books) => {
+	// 	if (filterBy.title) {
+	// 		const regExp = new RegExp(filterBy.title, "i")
+	// 		books = books.filter((book) => regExp.test(book.title))
+	// 	}
+	// -------------
+	// if (filterBy.listPrice.amount) {
+	// 	books = books.filter((book) => {
+	// 		book.listPrice.amount >= filterBy.listPrice.amount
+	// console.log(book, book.listPrice.amount, "TESTESTES")
+	// 	})
+	// }
+	// --------------
+	// 	return
+	// 	books
+	// })
 }
 // return storageService.query(CAR_KEY)
 //     .then(cars => {

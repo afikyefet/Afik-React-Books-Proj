@@ -4,5 +4,8 @@
 }
 
 .NavLink {
-	margin-right: 20px;
+	margin: 15px;
+	border: 2px solid var(--clr2bg);
+	padding: 4px 10px;
+	border-radius: 15px;
 }

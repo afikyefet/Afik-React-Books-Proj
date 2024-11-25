@@ -21,20 +21,9 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 				value = target.checked
 				break
 		}
-
-		// if (!field.includes(".")) {
-		// 	const [obj, nested] = field.split(".")
-		// 	// console.log(obj)
-		// 	setFilterByToEdit((prevFilter) => ({
-		// 		...prevFilter,
-		// 		[obj]: { [nested]: value },
-		// 	}))
-		// } else {
-		// 	setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
-		// }
-
-		// if (!field.includes(".")) {
 		setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+
+		// if (!field.includes(".")) {
 		// } else {
 		// 	const [obj, nested] = field.split(".")
 		// 	// console.log(obj)

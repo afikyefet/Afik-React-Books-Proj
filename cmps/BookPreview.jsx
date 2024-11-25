@@ -1,3 +1,5 @@
+const { Link } = ReactRouterDOM
+
 export function BookPreview({ book, onRemoveBook }) {
 	return (
 		<div className="book-preview">
@@ -13,8 +15,11 @@ export function BookPreview({ book, onRemoveBook }) {
 			</h4>
 			{/* <h5> {book.listPrice.isOnSale ? "On Sale!" : ""}</h5> */}
 			<div className="btn-container">
-				<button className="book-del" onClick={() => onRemoveBook(book.id)}>
+				<button className="del-btn" onClick={() => onRemoveBook(book.id)}>
 					delete
+				</button>
+				<button className="details-btn">
+					<Link to={`/book/${book.id}`}>Details</Link>
 				</button>
 			</div>
 		</div>
