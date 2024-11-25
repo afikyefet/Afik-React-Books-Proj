@@ -1,8 +1,7 @@
 .book-preview {
-	width: 180px;
-	height: 240px;
+	width: 150px;
+	height: 200px;
 	margin: 10px;
-	/* background-color: white; */
 	border-radius: 12px;
 	padding: 5px;
 	display: flex;
@@ -10,7 +9,6 @@
 	justify-content: flex-end;
 	text-align: left;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-	/* color: white; */
 	cursor: pointer;
 	color: transparent;
 }
@@ -26,13 +24,11 @@
 }
 
 .book-preview img {
-	/* width: 120px; */
-	height: 240px;
+	height: 200px;
 	z-index: -1;
 	margin-bottom: -5px;
 	align-self: center;
 	position: absolute;
-	/* margin-bottom: auto; */
 	border-radius: 15px;
 }
 
@@ -50,11 +46,8 @@
 
 .book-preview button {
 	text-align: center;
-	/* width: 42px; */
 	height: 20px;
 	font-weight: 700;
 	font-size: 11px;
 	border-radius: 14px;
-	/* background-color: black; */
-	/* color: white; */
 }
