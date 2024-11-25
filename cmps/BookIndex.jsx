@@ -3,6 +3,7 @@ import { BookList } from "./BookList.jsx"
 import { BooksFilter } from "./BookFilter.jsx"
 
 const { useEffect, useState } = React
+const { Link } = ReactRouterDOM
 
 export function BookIndex() {
 	const [books, setBooks] = useState(null)
@@ -42,8 +43,11 @@ export function BookIndex() {
 
 	if (!books) return <div>Loading....</div>
 	return (
-		<section className="books-index">
+		<section className="book-index">
 			<BooksFilter defaultFilter={filterBy} onSetFilter={onSetFilter} />
+			<section className="add-btn">
+				<Link to="/book/edit">Add Book</Link>
+			</section>
 			<h1>This is the full book list</h1>
 			<BookList books={books} onRemoveBook={onRemoveBook} />
 		</section>

@@ -58,9 +58,14 @@ function remove(bookId) {
 }
 
 function save(book) {
-	if (car.id) {
+	if (book.id) {
 		return storageService.put(STORAGE_KEY, book)
 	} else {
+		if (book.categories.typeof !== "object") {
+			book.categories = book.categories.slice(" ")
+		}
+		book.thumbnail =
+			"/assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg"
 		return storageService.post(STORAGE_KEY, book)
 	}
 }

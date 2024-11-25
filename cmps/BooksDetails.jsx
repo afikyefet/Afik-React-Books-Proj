@@ -28,9 +28,11 @@ export function BookDetails() {
 	if (!book) return <div>Loading Book....</div>
 	return (
 		<section className="book-details">
+			<button onClick={onBack}>Back</button>
+
 			<img src={book.thumbnail} alt="" />
-			<h1>{book.title}</h1>
-			<h2>{book.subtitle}</h2>
+			<h2>{book.title}</h2>
+			<h1>{book.subtitle}</h1>
 			<h4>
 				{book.authors} , {book.publishedDate}
 			</h4>
