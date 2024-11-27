@@ -97,7 +97,7 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 						name="listPrice.isOnSale"
 					/>
 				</label>
-				<button>Submit</button>
+				{/* <button>Submit</button> */}
 			</form>
 		</section>
 	)

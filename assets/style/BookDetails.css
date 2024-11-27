@@ -3,6 +3,8 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin: 0 auto;
+	max-width: 600px;
 }
 
 .book-details img {

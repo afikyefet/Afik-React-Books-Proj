@@ -9,6 +9,10 @@
 	margin: 10px auto;
 }
 
+.book-edit .btn-container {
+	align-self: center;
+}
+
 .book-edit textarea {
 	width: 70%;
 	/* max-width: 800px; */

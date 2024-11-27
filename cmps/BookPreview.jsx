@@ -10,6 +10,22 @@ export function BookPreview({ book, onRemoveBook }) {
 		return null
 	}
 
+	function getTextColorByPrice(amount) {
+		if (amount > 150) return "t-red"
+		if (amount < 20) return "t-green"
+	}
+
+	function getCurrencyCodeSigh(currencyCode) {
+		switch (currencyCode) {
+			case "ILS":
+				return "₪"
+			case "USD":
+				return "$"
+			case "EUR":
+				return "€"
+		}
+	}
+
 	return (
 		<div className="book-preview">
 			<div className="book-img">
@@ -22,17 +38,19 @@ export function BookPreview({ book, onRemoveBook }) {
 				{book.authors}, {book.publishedDate}
 			</h5>
 			<ul className="book-categories">
-				{isVintageTag(book.publishedDate)}
 				{book.categories.map((cat) => (
 					<li key={cat}>{cat.toLowerCase()}</li>
 				))}
+				{isVintageTag(book.publishedDate)}
 			</ul>
 			{/* <h5>{book.pageCount}</h5> */}
-			<h4 className="book-price">
-				{book.listPrice.amount} {book.listPrice.currencyCode}
-				{book.listPrice.isOnSale ? " On Sale!" : ""}
+			<h4
+				className={`book-price ${getTextColorByPrice(book.listPrice.amount)}`}
+			>
+				{book.listPrice.amount}
+				{getCurrencyCodeSigh(book.listPrice.currencyCode)}
+				{/* {book.listPrice.isOnSale ? " On Sale!" : ""} */}
 			</h4>
-			{/* <h5> {book.listPrice.isOnSale ? "On Sale!" : ""}</h5> */}
 			<div className="btn-container">
 				<button className="del-btn" onClick={() => onRemoveBook(book.id)}>
 					delete

@@ -43,6 +43,10 @@ export function BooksEdit() {
 		}
 	}
 
+	function onBack() {
+		navigate("/book")
+	}
+
 	function onSaveBook(ev) {
 		ev.preventDefault()
 		bookService
@@ -180,7 +184,10 @@ export function BooksEdit() {
 						name="listPrice.isOnSale"
 					/>
 				</label>
-				<button>Save</button>
+				<div className="btn-container">
+					<button onClick={onBack}>Back</button>
+					<button>Save</button>
+				</div>
 			</form>
 		</section>
 	)
