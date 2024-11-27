@@ -118,7 +118,7 @@ function _setNextPrevBookId(book) {
 	})
 }
 
-function _createCar(book = {}) {
+function _createBook(book = {}) {
 	const newBook = {
 		id: utilService.makeId(),
 		title: "",

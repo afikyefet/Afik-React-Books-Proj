@@ -31,19 +31,28 @@
 		position: absolute;
 		border-radius: 15px;
 	} */
+.book-preview h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0.2em 0 0.2em;
+	font-family: "Outfit", sans-serif !important;
+}
+
 .book-preview {
 	font-family: "Outfit", sans-serif;
 	width: 150px;
-	height: 200px;
+	/* height: 240px; */
 	margin: 10px;
 	border-radius: 12px;
 	padding: 3px;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: auto auto auto auto auto auto;
+	grid-template-rows: auto 45px auto auto auto auto;
 	text-align: left;
 	justify-content: center;
-
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 	cursor: pointer;
 }
@@ -67,25 +76,43 @@
 
 .book-preview .book-title {
 	grid-area: 2/1/3/-1;
-	white-space: nowrap;
-	/* text-overflow: ellipsis; */
-	/* font-size: 2vw; */
 	width: 100%;
-	white-space: nowrap;
+	align-self: center;
 	border-radius: 15px;
 	padding: 4px;
 }
 .book-preview .book-title h1 {
-	font-size: clamp(5px, 1em, 1em);
-	white-space: nowrap;
+	font-size: 0.9em;
+	/* white-space: nowrap; */
 }
 
 .book-preview .book-authors {
 	grid-area: 3/1/4/-1;
+	font-size: 0.7em;
+	color: gray;
+	margin: 0 5px;
 }
 
 .book-preview .book-categories {
 	grid-area: 4/1/5/-1;
+	display: flex;
+	font-size: 0.7em;
+	font-weight: 300;
+	margin: 0 5px;
+	align-content: center;
+}
+
+.book-preview .book-categories li {
+	color: white;
+	background-color: gray;
+	padding: 0 2px;
+	border-radius: 4px;
+}
+.book-preview .book-categories .publishedDate {
+	color: rgb(69, 58, 117);
+	background-color: rgb(255, 255, 255);
+	border: 1px solid rgb(69, 58, 117);
+	font-weight: 600;
 }
 
 .book-preview .book-price {

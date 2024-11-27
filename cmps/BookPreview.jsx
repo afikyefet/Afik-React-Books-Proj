@@ -1,7 +1,14 @@
-const { Link, useNavigate } = ReactRouterDOM
+const { Link } = ReactRouterDOM
 
 export function BookPreview({ book, onRemoveBook }) {
-	const navigate = useNavigate()
+	function isVintageTag(publishedDate) {
+		if (publishedDate < 2015) {
+			return <li className="publishedDate">vintage</li>
+		} else if (publishedDate > 2023) {
+			return <li className="publishedDate">new publish</li>
+		}
+		return null
+	}
 
 	return (
 		<div className="book-preview">
@@ -9,12 +16,17 @@ export function BookPreview({ book, onRemoveBook }) {
 				<img src={book.thumbnail} alt="book cover" />
 			</div>
 			<div className="book-title">
-				<h1>{book.title}</h1>
+				<h1>{book.title.replace(/^./, (char) => char.toUpperCase())}</h1>
 			</div>
 			<h5 className="book-authors">
 				{book.authors}, {book.publishedDate}
 			</h5>
-			<h5 className="book-categories">{book.categories}</h5>
+			<ul className="book-categories">
+				{isVintageTag(book.publishedDate)}
+				{book.categories.map((cat) => (
+					<li key={cat}>{cat.toLowerCase()}</li>
+				))}
+			</ul>
 			{/* <h5>{book.pageCount}</h5> */}
 			<h4 className="book-price">
 				{book.listPrice.amount} {book.listPrice.currencyCode}
