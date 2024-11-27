@@ -15,7 +15,7 @@ export function BookPreview({ book, onRemoveBook }) {
 			<h4>
 				{book.listPrice.amount} {book.listPrice.currencyCode}
 			</h4>
-			{/* <h5> {book.listPrice.isOnSale ? "On Sale!" : ""}</h5> */}
+			<h5> {book.listPrice.isOnSale ? "On Sale!" : ""}</h5>
 			<div className="btn-container">
 				<button className="del-btn" onClick={() => onRemoveBook(book.id)}>
 					delete

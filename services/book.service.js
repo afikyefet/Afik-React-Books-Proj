@@ -9,6 +9,7 @@ export const bookService = {
 	save,
 	getEmptyBook,
 	getDefaultFilter,
+	getCurrencyCodes,
 }
 
 const STORAGE_KEY = "BooksDB"
@@ -21,25 +22,38 @@ function query(filterBy = {}) {
 			books = books.filter((book) => regExp.test(book.title))
 		}
 
-		if (filterBy.listPrice.amount > 0) {
+		if (filterBy.listPrice && filterBy.listPrice.amount > 0) {
 			books = books.filter((book) => {
 				return book.listPrice.amount < filterBy.listPrice.amount
+			})
+		}
+		if (filterBy.publishedDate) {
+			books = books.filter((book) => {
+				return book.publishedDate < filterBy.publishedDate
+			})
+		}
+
+		if (filterBy.listPrice && filterBy.listPrice.isOnSale) {
+			books = books.filter((book) => {
+				return book.listPrice.isOnSale
 			})
 		}
 		return books
 	})
 
 	return books
-	// ---------
-	// --------------
 }
 
 function getDefaultFilter() {
-	return { title: "", listPrice: { amount: 200 } }
+	return {
+		title: "",
+		publishedDate: 2025,
+		listPrice: { amount: 200, isOnSale: false },
+	}
 }
 
 function get(bookId) {
-	return storageService.get(STORAGE_KEY, bookId)
+	return storageService.get(STORAGE_KEY, bookId).then(_setNextPrevBookId)
 }
 
 function remove(bookId) {
@@ -72,10 +86,14 @@ function getEmptyBook() {
 		language: "",
 		listPrice: {
 			amount: 0,
-			currencyCode: "",
+			currencyCode: "USD",
 			isOnSale: false,
 		},
 	}
+}
+
+function getCurrencyCodes() {
+	return ["ILS", "USD", "EUR"]
 }
 
 async function _CreateBooks() {
@@ -85,6 +103,19 @@ async function _CreateBooks() {
 		books = booksReady
 	}
 	utilService.saveToStorage(STORAGE_KEY, books)
+}
+
+function _setNextPrevBookId(book) {
+	return query().then((books) => {
+		const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
+		const nextBook = books[bookIdx + 1] ? books[bookIdx + 1] : books[0]
+		const prevBook = books[bookIdx - 1]
+			? books[bookIdx - 1]
+			: books[books.length - 1]
+		book.nextBookId = nextBook.id
+		book.prevBookId = prevBook.id
+		return book
+	})
 }
 
 function _createCar(book = {}) {

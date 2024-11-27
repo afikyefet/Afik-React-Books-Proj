@@ -31,7 +31,7 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 			// console.log(obj)
 			setFilterByToEdit((prevFilter) => ({
 				...prevFilter,
-				[obj]: { [nested]: value },
+				[obj]: { ...prevFilter[obj], [nested]: value },
 			}))
 		}
 	}
@@ -70,6 +70,32 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 						onChange={handleChange}
 					/>
 					{filterByToEdit.listPrice.amount}
+				</label>
+				<label htmlFor="date-filter">
+					Max year:
+					<input
+						ref={rangeRef}
+						value={filterByToEdit.publishedDate}
+						type="range"
+						max={2025}
+						min={1970}
+						id="date-filter"
+						name="publishedDate"
+						className="date-filter"
+						onChange={handleChange}
+					/>
+					{filterByToEdit.publishedDate}
+				</label>
+				<label htmlFor="isOnSale">
+					isOnSale:{" "}
+					<input
+						type="checkbox"
+						onChange={handleChange}
+						id="isOnSale"
+						checked={filterByToEdit.listPrice.isOnSale}
+						value={filterByToEdit.listPrice.isOnSale}
+						name="listPrice.isOnSale"
+					/>
 				</label>
 				<button>Submit</button>
 			</form>

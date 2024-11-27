@@ -1,4 +1,4 @@
-.book-preview {
+/* .book-preview {
 	width: 150px;
 	height: 200px;
 	margin: 10px;
@@ -21,16 +21,16 @@
 	);
 	transition: 0.1s ease-in;
 	color: black;
-}
+} */
 
-.book-preview img {
+/* .book-preview img {
 	height: 200px;
 	z-index: -1;
 	margin-bottom: -5px;
 	align-self: center;
 	position: absolute;
 	border-radius: 15px;
-}
+} */
 
 .book-preview * {
 	margin: 0px 3px;

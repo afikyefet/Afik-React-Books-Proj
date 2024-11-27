@@ -21,6 +21,7 @@ export function BooksEdit() {
 
 	function handleChange({ target }) {
 		let { value, name: field } = target
+
 		switch (target.type) {
 			case "range":
 			case "number":
@@ -30,7 +31,16 @@ export function BooksEdit() {
 				value = target.checked
 				break
 		}
-		setBookToEdit((prevBook) => ({ ...prevBook, [field]: value }))
+		// setBookToEdit((prevBook) => ({ ...prevBook, [field]: value }))
+		if (!field.includes(".")) {
+			setBookToEdit((prevBook) => ({ ...prevBook, [field]: value }))
+		} else {
+			const [obj, nested] = field.split(".")
+			setBookToEdit((prevBook) => ({
+				...prevBook,
+				[obj]: { ...prevBook[obj], [nested]: value },
+			}))
+		}
 	}
 
 	function onSaveBook(ev) {
@@ -117,13 +127,13 @@ export function BooksEdit() {
 				{/* <label htmlFor="thumbnail">
 					thumbnail:{" "}
 					<input
-						type="text"
-						onChange={handleChange}
-						value={bookToEdit.thumbnail}
-						id="thumbnail"
-						name="thumbnail"
+					type="text"
+					onChange={handleChange}
+					value={bookToEdit.thumbnail}
+					id="thumbnail"
+					name="thumbnail"
 					/>
-				</label> */}
+					</label> */}
 				<label htmlFor="language">
 					language:{" "}
 					<input
@@ -132,6 +142,42 @@ export function BooksEdit() {
 						value={bookToEdit.language}
 						id="language"
 						name="language"
+					/>
+				</label>
+				<label htmlFor="amount">
+					amount:{" "}
+					<input
+						type="number"
+						onChange={handleChange}
+						value={bookToEdit.listPrice.amount}
+						id="amount"
+						name="listPrice.amount"
+					/>
+				</label>
+				<label htmlFor="currencyCode">
+					currencyCode:{" "}
+					<select
+						onChange={handleChange}
+						value={bookToEdit.listPrice.currencyCode || "ILS"}
+						id="currencyCode"
+						name="listPrice.currencyCode"
+					>
+						{bookService.getCurrencyCodes().map((code) => (
+							<option key={code} value={code}>
+								{code}
+							</option>
+						))}
+					</select>
+				</label>
+				<label htmlFor="isOnSale">
+					isOnSale:{" "}
+					<input
+						type="checkbox"
+						onChange={handleChange}
+						id="isOnSale"
+						checked={bookToEdit.listPrice.isOnSale}
+						value={bookToEdit.listPrice.isOnSale}
+						name="listPrice.isOnSale"
 					/>
 				</label>
 				<button>Save</button>

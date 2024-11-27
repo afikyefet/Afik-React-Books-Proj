@@ -3,7 +3,7 @@ const { useParams, useNavigate, Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
 export function BookDetails() {
-	const [book, setbook] = useState(null)
+	const [book, setBook] = useState(null)
 	const params = useParams()
 	const navigate = useNavigate()
 
@@ -12,12 +12,10 @@ export function BookDetails() {
 	}, [params.bookId])
 
 	function loadbook() {
-		bookService
-			.get(params.bookId)
-			.then(setbook)
-			.catch((err) => {
-				console.log("Problem getting book", err)
-			})
+		bookService.get(params.bookId).then(setBook)
+		// .catch((err) => {
+		// 	console.log("Problem getting book", err)
+		// })
 	}
 
 	function onBack() {
@@ -40,7 +38,15 @@ export function BookDetails() {
 			<p>
 				{book.description}, {book.pageCount} pages
 			</p>
-			<button onClick={onBack}>Back</button>
+			<div className="btn-container">
+				<button>
+					<Link to={`/book/${book.prevBookId}`}>Prev Book</Link>
+				</button>
+				<button onClick={onBack}>Back</button>
+				<button>
+					<Link to={`/book/${book.nextBookId}`}>Next Book</Link>
+				</button>
+			</div>
 		</section>
 	)
 }
