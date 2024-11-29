@@ -11,3 +11,9 @@
 .book-index h1 {
 	text-align: center;
 }
+
+.book-index .icon {
+	width: 20px;
+	aspect-ratio: unset;
+	/* margin: 20px; */
+}

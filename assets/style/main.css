@@ -10,6 +10,7 @@
 @import url(./BooksEdit.css);
 @import url(./BookIndex.css);
 @import url(./BookFilter.css);
+@import url(./Home.css);
 
 /* Vars */
 :root {
@@ -24,6 +25,10 @@
 	--gray1: rgb(240, 240, 240);
 	--gray2: rgb(155, 155, 155);
 	--gray3: rgb(44, 44, 44);
+	--Soft-Peach: #f9e0d9;
+	--Sage-Green: #b8c5a6;
+	--Light-Cream: #faf6f3;
+	--Neutral-Accent: #333333;
 }
 
 /* Base */
@@ -34,7 +39,7 @@
 
 body {
 	margin: 0;
-	color: var(--gray3);
+	color: var(--Neutral-Accent);
 	font-family: "Funnel Sans", sans-serif;
 }
 
@@ -179,39 +184,4 @@ input:focus {
 
 .home {
 	font-size: 1em;
-}
-
-.app-header {
-	background-color: var(--clr1);
-	color: var(--clr2bg-light);
-}
-
-.header-container {
-	display: flex;
-	align-items: center;
-}
-
-.header-container h1 {
-	flex-grow: 1;
-}
-
-.app-nav {
-	display: flex;
-	gap: 15px;
-}
-
-a.active {
-	color: rgb(255, 255, 255);
-	font-weight: 600;
-	text-decoration: underline;
-}
-
-@media (max-width: 720px) {
-	.app-header {
-		color: var(--clr2bg-light);
-	}
-
-	.header-container {
-		flex-direction: column;
-	}
 }

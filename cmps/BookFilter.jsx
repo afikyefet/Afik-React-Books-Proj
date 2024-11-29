@@ -63,7 +63,7 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 						ref={rangeRef}
 						value={filterByToEdit.listPrice.amount}
 						type="range"
-						max={200}
+						max={500}
 						id="price-filter"
 						name="listPrice.amount"
 						className="price-filter"
@@ -72,7 +72,7 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 					{filterByToEdit.listPrice.amount}
 				</label>
 				<label htmlFor="date-filter">
-					Max year:
+					Up untill:
 					<input
 						ref={rangeRef}
 						value={filterByToEdit.publishedDate}
@@ -87,7 +87,7 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 					{filterByToEdit.publishedDate}
 				</label>
 				<label htmlFor="isOnSale">
-					isOnSale:{" "}
+					On sale:{" "}
 					<input
 						type="checkbox"
 						onChange={handleChange}

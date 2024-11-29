@@ -29,7 +29,9 @@ export function BookPreview({ book, onRemoveBook }) {
 	return (
 		<div className="book-preview">
 			<div className="book-img">
-				<img src={book.thumbnail} alt="book cover" />
+				<Link to={`/book/${book.id}`}>
+					<img src={book.thumbnail} alt="book cover" />
+				</Link>
 			</div>
 			<div className="book-title">
 				<h1>{book.title.replace(/^./, (char) => char.toUpperCase())}</h1>
@@ -53,13 +55,23 @@ export function BookPreview({ book, onRemoveBook }) {
 			</h4>
 			<div className="btn-container">
 				<button className="del-btn" onClick={() => onRemoveBook(book.id)}>
-					delete
+					<img
+						className="icon"
+						src="../assets/img/icons/bin black on white.png"
+						alt="Delete book"
+					/>
 				</button>
 				<button className="details-btn">
 					<Link to={`/book/${book.id}`}>Details</Link>
 				</button>
 				<button className="edit-btn">
-					<Link to={`/book/edit/${book.id}`}>Edit</Link>
+					<Link to={`/book/edit/${book.id}`}>
+						<img
+							className="icon"
+							src="../assets/img/icons/pencil.png"
+							alt="Edit book"
+						/>
+					</Link>
 				</button>
 			</div>
 		</div>

@@ -58,132 +58,100 @@ export function BooksEdit() {
 	return (
 		<section className="book-edit">
 			<form onSubmit={onSaveBook}>
-				<label htmlFor="title">
-					Title:{" "}
-					<input
-						type="text"
-						onChange={handleChange}
-						value={bookToEdit.title}
-						id="title"
-						name="title"
-					/>
-				</label>
-				<label htmlFor="subtitle">
-					Subtitle:{" "}
-					<textarea
-						type="text"
-						onChange={handleChange}
-						value={bookToEdit.subtitle}
-						id="subtitle"
-						name="subtitle"
-					/>
-				</label>
-				<label htmlFor="authors">
-					authors:{" "}
-					<input
-						type="text"
-						onChange={handleChange}
-						value={bookToEdit.authors}
-						id="authors"
-						name="authors"
-					/>
-				</label>
-				<label htmlFor="publishedDate">
-					publishedDate:{" "}
-					<input
-						type="number"
-						onChange={handleChange}
-						value={bookToEdit.publishedDate}
-						id="publishedDate"
-						name="publishedDate"
-					/>
-				</label>
-				<label htmlFor="description">
-					description:{" "}
-					<textarea
-						type="text"
-						onChange={handleChange}
-						value={bookToEdit.description}
-						id="description"
-						name="description"
-					/>
-				</label>
-				<label htmlFor="pageCount">
-					pageCount:{" "}
-					<input
-						type="number"
-						onChange={handleChange}
-						value={bookToEdit.pageCount}
-						id="pageCount"
-						name="pageCount"
-					/>
-				</label>
-				<label htmlFor="categories">
-					categories:{" "}
-					<input
-						type="text"
-						onChange={handleChange}
-						value={bookToEdit.categories}
-						id="categories"
-						name="categories"
-					/>
-				</label>
-				{/* <label htmlFor="thumbnail">
-					thumbnail:{" "}
-					<input
+				<label htmlFor="title">Title: </label>
+				<input
 					type="text"
 					onChange={handleChange}
-					value={bookToEdit.thumbnail}
-					id="thumbnail"
-					name="thumbnail"
-					/>
-					</label> */}
-				<label htmlFor="language">
-					language:{" "}
-					<input
-						type="text"
-						onChange={handleChange}
-						value={bookToEdit.language}
-						id="language"
-						name="language"
-					/>
-				</label>
-				<label htmlFor="amount">
-					amount:{" "}
-					<input
-						type="number"
-						onChange={handleChange}
-						value={bookToEdit.listPrice.amount}
-						id="amount"
-						name="listPrice.amount"
-					/>
-				</label>
-				<label htmlFor="currencyCode">
-					currencyCode:{" "}
-					<select
-						onChange={handleChange}
-						value={bookToEdit.listPrice.currencyCode || "ILS"}
-						id="currencyCode"
-						name="listPrice.currencyCode"
-					>
-						{bookService.getCurrencyCodes().map((code) => (
-							<option key={code} value={code}>
-								{code}
-							</option>
-						))}
-					</select>
-				</label>
-				<label htmlFor="isOnSale">
-					isOnSale:{" "}
-					<input
-						type="checkbox"
-						onChange={handleChange}
-						id="isOnSale"
-						checked={bookToEdit.listPrice.isOnSale}
-						value={bookToEdit.listPrice.isOnSale}
-						name="listPrice.isOnSale"
-					/>
-				</label>
+					value={bookToEdit.title}
+					id="title"
+					name="title"
+				/>
+				<label htmlFor="subtitle">Subtitle: </label>
+				<textarea
+					type="text"
+					onChange={handleChange}
+					value={bookToEdit.subtitle}
+					id="subtitle"
+					name="subtitle"
+				/>
+				<label htmlFor="authors">Authors: </label>
+				<input
+					type="text"
+					onChange={handleChange}
+					value={bookToEdit.authors}
+					id="authors"
+					name="authors"
+				/>
+				<label htmlFor="publishedDate">Published Year: </label>
+				<input
+					type="number"
+					onChange={handleChange}
+					value={bookToEdit.publishedDate}
+					id="publishedDate"
+					name="publishedDate"
+				/>
+				<label htmlFor="description">Description: </label>
+				<textarea
+					type="text"
+					onChange={handleChange}
+					value={bookToEdit.description}
+					id="description"
+					name="description"
+				/>
+				<label htmlFor="pageCount">Pages: </label>
+				<input
+					type="number"
+					onChange={handleChange}
+					value={bookToEdit.pageCount}
+					id="pageCount"
+					name="pageCount"
+				/>
+				<label htmlFor="categories">Categories: </label>
+				<input
+					type="text"
+					onChange={handleChange}
+					value={bookToEdit.categories}
+					id="categories"
+					name="categories"
+				/>
+				<label htmlFor="language">Language: </label>
+				<input
+					type="text"
+					onChange={handleChange}
+					value={bookToEdit.language}
+					id="language"
+					name="language"
+				/>
+				<label htmlFor="amount">Price: </label>
+				<input
+					type="number"
+					onChange={handleChange}
+					value={bookToEdit.listPrice.amount}
+					id="amount"
+					name="listPrice.amount"
+				/>
+				<label htmlFor="currencyCode">Currency: </label>
+				<select
+					onChange={handleChange}
+					value={bookToEdit.listPrice.currencyCode || "ILS"}
+					id="currencyCode"
+					name="listPrice.currencyCode"
+				>
+					{bookService.getCurrencyCodes().map((code) => (
+						<option key={code} value={code}>
+							{code}
+						</option>
+					))}
+				</select>
+				<label htmlFor="isOnSale">on Sale: </label>
+				<input
+					type="checkbox"
+					onChange={handleChange}
+					id="isOnSale"
+					checked={bookToEdit.listPrice.isOnSale}
+					value={bookToEdit.listPrice.isOnSale}
+					name="listPrice.isOnSale"
+				/>
 				<div className="btn-container">
 					<button onClick={onBack}>Back</button>
 					<button>Save</button>

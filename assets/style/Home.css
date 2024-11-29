@@ -1,0 +1,33 @@
+.hero-container {
+	display: grid;
+	/* grid-template-columns: 1fr 1fr; */
+	/* grid-template-rows: auto auto; */
+	grid-template-areas:
+		"t i"
+		"s i";
+	justify-items: center;
+}
+
+@media (max-width: 920px) {
+	.hero-container {
+		grid-template-areas:
+			"t"
+			"s"
+			"i";
+	}
+}
+
+.hero-container .hero-title {
+	font-size: 3em;
+	grid-area: t;
+}
+.hero-container .hero-subtitle {
+	grid-area: s;
+}
+
+.hero-container .hero-img {
+	width: 80%;
+	/* grid-row: 1/-1; */
+	align-self: center;
+	grid-area: i;
+}

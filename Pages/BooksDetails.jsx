@@ -12,10 +12,12 @@ export function BookDetails() {
 	}, [params.bookId])
 
 	function loadbook() {
-		bookService.get(params.bookId).then(setBook)
-		// .catch((err) => {
-		// 	console.log("Problem getting book", err)
-		// })
+		bookService
+			.get(params.bookId)
+			.then(setBook)
+			.catch((err) => {
+				console.log("Problem getting book", err)
+			})
 	}
 
 	function getTextColorByPrice(amount) {
@@ -51,18 +53,60 @@ export function BookDetails() {
 	if (!book) return <div>Loading Book....</div>
 	return (
 		<section className="book-details">
-			<button onClick={onBack}>Back</button>
+			{/* <button onClick={onBack}>Back</button> */}
+			<div className="btn-container">
+				{/* <button>
+					<Link to={`/book/${book.prevBookId}`}>Prev Book</Link>
+				</button> */}
+				<Link to={`/book/${book.prevBookId}`}>
+					<img
+						className="icon"
+						src="../assets/img/icons/left-arrow.png"
+						alt="Previous Book"
+					/>
+				</Link>
+				{/* <button onClick={onBack}>Back</button> */}
+				<img
+					className="icon"
+					src="../assets/img/icons/list.png"
+					alt="Book List"
+					onClick={onBack}
+				/>
+				{/* <button className="edit-btn">
+					<Link to={`/book/edit/${book.id}`}>Edit</Link>
+				</button> */}
+				<Link to={`/book/edit/${book.id}`}>
+					<img
+						className="icon"
+						src="../assets/img/icons/pencil.png"
+						alt="Edit book"
+					/>
+				</Link>
+
+				{/* <button>
+					<Link to={`/book/${book.nextBookId}`}>Next Book</Link>
+					</button> */}
+				<Link to={`/book/${book.nextBookId}`}>
+					<img
+						className="icon"
+						src="../assets/img/icons/right-arrow.png"
+						alt="Nest book"
+					/>
+				</Link>
+			</div>
 
 			<img src={book.thumbnail} alt="" />
 			<h2>{book.title}</h2>
 			<h1>{book.subtitle}</h1>
-			<h4>
+			<h4 className="book-authors">
 				{book.authors} , {book.publishedDate}
 			</h4>
-			<h4>
-				{book.categories}
+			<ul className="book-categories">
+				{book.categories.map((cat) => (
+					<li key={cat}>{cat.toLowerCase()}</li>
+				))}
 				{isVintageTag(book.publishedDate)}
-			</h4>
+			</ul>
 			<h4></h4>
 			<h5>Book language: {book.language}</h5>
 			<h5>{getPageCount(book.pageCount)}</h5>
@@ -74,18 +118,6 @@ export function BookDetails() {
 				{bookService.getCurrencyCodeSigh(book.listPrice.currencyCode)}
 				{book.listPrice.isOnSale ? " On Sale!" : ""}
 			</h3>
-			<div className="btn-container">
-				<button>
-					<Link to={`/book/${book.prevBookId}`}>Prev Book</Link>
-				</button>
-				<button onClick={onBack}>Back</button>
-				<button className="edit-btn">
-					<Link to={`/book/edit/${book.id}`}>Edit</Link>
-				</button>
-				<button>
-					<Link to={`/book/${book.nextBookId}`}>Next Book</Link>
-				</button>
-			</div>
 		</section>
 	)
 }

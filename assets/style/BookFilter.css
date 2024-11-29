@@ -1,11 +1,12 @@
 .book-filter form {
-	margin: 0 auto;
+	margin: 10px auto;
 	text-align: center;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	/* flex-direction: column; */
+	justify-content: space-evenly;
+	flex-wrap: wrap;
 	align-items: center;
 	border: 2px solid var(--clr2);
-	padding: 2px;
+	padding: 14px;
 	border-radius: 12px;
 }

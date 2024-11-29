@@ -1,8 +1,9 @@
 .book-edit form {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	/* align-items: center; */
+	display: grid;
+	grid-template-columns: auto 1fr;
+
+	justify-items: flex-start;
+	gap: 8px;
 	width: 70%;
 	min-width: 200px;
 	max-width: 800px;
@@ -10,7 +11,9 @@
 }
 
 .book-edit .btn-container {
-	align-self: center;
+	/* grid-area: -2/-1/-1 /-1; */
+	grid-column: 1/-1;
+	margin: auto;
 }
 
 .book-edit textarea {
@@ -22,5 +25,5 @@
 
 .book-edit label {
 	margin: 7px;
-	display: flex;
+	/* display: flex; */
 }
