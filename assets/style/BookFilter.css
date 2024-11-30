@@ -6,7 +6,8 @@
 	justify-content: space-evenly;
 	flex-wrap: wrap;
 	align-items: center;
-	border: 2px solid var(--clr2);
+	/* border: 2px solid var(--clr2); */
 	padding: 14px;
 	border-radius: 12px;
+	background-color: var(--clr1bg-light);
 }

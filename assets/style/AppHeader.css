@@ -7,15 +7,15 @@
 .NavLink {
 	margin: 15px;
 	/* margin: 0 auto; */
-	border: 2px solid var(--clr2bg);
+	border: 2px solid white;
 	padding: 4px 10px;
 	border-radius: 15px;
-	opacity: 0.9;
+	/* opacity: 0.9; */
 }
 
 .app-header {
 	background-color: var(--clr1);
-	color: var(--clr2bg-light);
+	color: white;
 }
 
 .header-container {
@@ -36,7 +36,7 @@
 }
 
 a.active {
-	color: var(--clr1);
+	color: var(--Neutral-Accent);
 	font-weight: 600;
 	/* text-decoration: underline; */
 	background-color: var(--clr2bg);

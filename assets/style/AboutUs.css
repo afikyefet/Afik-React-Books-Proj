@@ -30,6 +30,13 @@
 .about-faq .about-community {
 	grid-area: co;
 }
+
+.about-faq h5 {
+	background-color: var(--clr1bg-light);
+	padding: 3px;
+	border-radius: 3px;
+}
+
 .about-faq .a1 {
 	grid-area: a1;
 	grid-row: 2/3;
