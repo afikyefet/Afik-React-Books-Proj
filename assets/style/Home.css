@@ -6,6 +6,8 @@
 		"t i"
 		"s i";
 	justify-items: center;
+	margin: 0 auto;
+	max-width: 1000px;
 }
 
 @media (max-width: 920px) {

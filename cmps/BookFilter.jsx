@@ -44,7 +44,6 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 	return (
 		<section className="book-filter">
 			<form onSubmit={onSubmitFilter}>
-				<h1>Books filter</h1>
 				<label htmlFor="title-filter">
 					Title:{" "}
 					<input

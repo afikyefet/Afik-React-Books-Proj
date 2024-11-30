@@ -1,0 +1,61 @@
+.about-container {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.about-faq {
+	display: grid;
+	grid-template-areas: "of" "a1" "ch" "a2" "co" "a3";
+	margin: 10px 0;
+	align-items: center;
+}
+
+.about-main h3 {
+	font-size: 2em;
+}
+.about-main p {
+	font-size: 1.2em;
+}
+
+.about-faq * {
+	padding: 1px 0px;
+}
+
+.about-faq .about-offer {
+	grid-area: of;
+}
+.about-faq .about-choose {
+	grid-area: ch;
+}
+.about-faq .about-community {
+	grid-area: co;
+}
+.about-faq .a1 {
+	grid-area: a1;
+	grid-row: 2/3;
+}
+.about-faq .a2 {
+	grid-area: a2;
+	grid-row: 3/4;
+}
+.about-faq .a3 {
+	grid-area: a3;
+	grid-row: 4/5;
+}
+
+.about-faq a {
+	font-size: 1.1em;
+}
+
+.about-faq a .icon {
+	width: 11px;
+	margin-bottom: -2px;
+	transform: rotate(-0.25turn);
+}
+.about-faq a.active {
+	text-decoration: underline;
+	color: black;
+}
+.about-faq a.active .icon {
+	transform: rotate(0turn);
+}
