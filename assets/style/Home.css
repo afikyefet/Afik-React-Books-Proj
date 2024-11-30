@@ -33,3 +33,9 @@
 	align-self: center;
 	grid-area: i;
 }
+
+@media (max-width: 700px) {
+	.hero-container .hero-title {
+		font-size: 2em;
+	}
+}

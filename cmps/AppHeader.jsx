@@ -12,10 +12,10 @@ export function AppHeader() {
 						Home
 					</NavLink>
 					<NavLink className="NavLink" to="/about">
-						About Us
+						About
 					</NavLink>
 					<NavLink className="NavLink" to="/book">
-						Books List
+						Books
 					</NavLink>
 				</nav>
 			</section>
