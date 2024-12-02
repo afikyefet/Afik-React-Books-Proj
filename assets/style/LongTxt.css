@@ -1,0 +1,6 @@
+.long-text a,
+.short-text a {
+	color: blue;
+	text-decoration: underline;
+	font-size: 0.8em;
+}

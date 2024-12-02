@@ -16,6 +16,7 @@
 .app-header {
 	background-color: var(--clr1);
 	color: white;
+	flex-grow: 1;
 }
 
 .header-container {

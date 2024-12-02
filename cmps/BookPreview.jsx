@@ -28,6 +28,13 @@ export function BookPreview({ book, onRemoveBook }) {
 
 	return (
 		<div className="book-preview">
+			{book.listPrice.isOnSale && (
+				<img
+					className="on-sale"
+					src="/assets/img/Sale-PNG.png"
+					alt="on sale!"
+				/>
+			)}
 			<div className="book-img">
 				<Link to={`/book/${book.id}`}>
 					<img src={book.thumbnail} alt="book cover" />

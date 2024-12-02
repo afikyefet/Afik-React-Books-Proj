@@ -67,6 +67,8 @@ h6 {
 	font-size: 0.7em;
 	color: grey;
 	margin: 4px 0px;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 .book-preview .book-categories {
@@ -141,4 +143,9 @@ h6 {
 	width: 14px;
 	aspect-ratio: unset;
 	/* margin: 20px; */
+}
+
+.on-sale {
+	position: absolute;
+	width: 70px;
 }

@@ -1,4 +1,5 @@
 import { bookService } from "../services/book.service.js"
+import { LongTxt } from "../cmps/LongTxt.jsx"
 const { useParams, useNavigate, Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
@@ -96,8 +97,8 @@ export function BookDetails() {
 			</div>
 
 			<img src={book.thumbnail} alt="" />
-			<h2>{book.title}</h2>
-			<h1>{book.subtitle}</h1>
+			<h2 className="book-title">{book.title}</h2>
+			<h1 className="book-subtitle">{book.subtitle}</h1>
 			<h4 className="book-authors">
 				{book.authors} , {book.publishedDate}
 			</h4>
@@ -107,13 +108,18 @@ export function BookDetails() {
 				))}
 				{isVintageTag(book.publishedDate)}
 			</ul>
-			<h4></h4>
-			<h5>Book language: {book.language}</h5>
-			<h5>{getPageCount(book.pageCount)}</h5>
-			<p>
-				{book.description}, <b>{book.pageCount} pages</b>{" "}
+			<h5 className="book-lang">Book language: {book.language}</h5>
+			<h5 className="book-pages">
+				{getPageCount(book.pageCount)}
+				<b>, {book.pageCount} pages</b>
+			</h5>
+
+			<p className="book-description">
+				{<LongTxt txt={book.description} length={50} />}
 			</p>
-			<h3 className={getTextColorByPrice(book.listPrice.amount)}>
+			<h3
+				className={getTextColorByPrice(book.listPrice.amount) + " book-price"}
+			>
 				{book.listPrice.amount}
 				{bookService.getCurrencyCodeSigh(book.listPrice.currencyCode)}
 				{book.listPrice.isOnSale ? " On Sale!" : ""}
