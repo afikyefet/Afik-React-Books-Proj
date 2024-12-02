@@ -1,10 +1,12 @@
 import { bookService } from "../services/book.service.js"
 import { LongTxt } from "../cmps/LongTxt.jsx"
+import { AddReview } from "../cmps/AddReview.jsx"
 const { useParams, useNavigate, Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
 export function BookDetails() {
-	const [book, setBook] = useState(null)
+	const [book, setBook] = useState(0)
+	const [reviews, setReviews] = useState(book.reviews)
 	const params = useParams()
 	const navigate = useNavigate()
 
@@ -15,9 +17,44 @@ export function BookDetails() {
 	function loadbook() {
 		bookService
 			.get(params.bookId)
-			.then(setBook)
+			.then((book) => {
+				setBook((currentBook) => (currentBook = book))
+				setReviews((reviews) => (reviews = book.reviews))
+			})
 			.catch((err) => {
 				console.log("Problem getting book", err)
+			})
+	}
+
+	function setNewReview(review) {
+		setReviews((reviews) => (reviews = [review, ...reviews]))
+		// console.log(review)
+		// console.log(reviews)
+		// console.log(book.reviews)
+	}
+
+	function onRemoveBook(bookId) {
+		bookService
+			.remove(bookId)
+			.then(() => {
+				console.log("book was deleted")
+			})
+			.catch((err) => {
+				console.log("Problems removing book:", err)
+			})
+	}
+
+	function onRemoveReview(reviewId) {
+		bookService
+			.removeReview(book.id, reviewId)
+			.then(() => {
+				setReviews((reviews) =>
+					reviews.filter((review) => review.id !== reviewId)
+				)
+				console.log("review was deleted")
+			})
+			.catch((err) => {
+				console.log("Problems removing review:", err)
 			})
 	}
 
@@ -89,6 +126,14 @@ export function BookDetails() {
 					</button> */}
 				<Link to={`/book/${book.nextBookId}`}>
 					<img
+						onClick={() => onRemoveBook(book.id)}
+						className="icon"
+						src="../assets/img/icons/bin black on white.png"
+						alt="Nest book"
+					/>
+				</Link>
+				<Link to={`/book/${book.nextBookId}`}>
+					<img
 						className="icon"
 						src="../assets/img/icons/right-arrow.png"
 						alt="Nest book"
@@ -124,6 +169,24 @@ export function BookDetails() {
 				{bookService.getCurrencyCodeSigh(book.listPrice.currencyCode)}
 				{book.listPrice.isOnSale ? " On Sale!" : ""}
 			</h3>
+			<AddReview bookId={book.id} setNewReview={setNewReview} />
+			<ul className="review-list">
+				{reviews.map((review) => (
+					<li key={review.id}>
+						<button
+							className="review-remove"
+							onClick={() => onRemoveReview(review.id)}
+						>
+							X
+						</button>
+						<h5 className="review-name">Full name: {review.fullname}</h5>
+						<h4 className="review-rate">Rating: {review.rating}</h4>
+						<span className="review-readat">
+							Book was read at: {review.readAt}
+						</span>
+					</li>
+				))}
+			</ul>
 		</section>
 	)
 }

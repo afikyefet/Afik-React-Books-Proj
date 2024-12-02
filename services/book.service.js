@@ -1,4 +1,3 @@
-import { booksReady } from "./books.js"
 import { storageService } from "./async-storage.service.js"
 import { utilService } from "./util.service.js"
 
@@ -11,6 +10,8 @@ export const bookService = {
 	getDefaultFilter,
 	getCurrencyCodes,
 	getCurrencyCodeSigh,
+	addReview,
+	removeReview,
 }
 
 const STORAGE_KEY = "BooksDB"
@@ -93,6 +94,21 @@ function getEmptyBook() {
 	}
 }
 
+async function addReview(bookId, review) {
+	review.id = utilService.makeId(4)
+	await get(bookId).then((book) => {
+		book.reviews = [review, ...book.reviews]
+		save(book)
+	})
+	return review
+}
+
+async function removeReview(bookId, reviewId) {
+	const book = await get(bookId)
+	book.reviews = book.reviews.filter((review) => review.id !== reviewId)
+	save(book)
+}
+
 function getCurrencyCodes() {
 	return ["ILS", "USD", "EUR"]
 }
@@ -130,13 +146,14 @@ async function _CreateBooks() {
 				categories: [
 					ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)],
 				],
-				thumbnail: `http://coding-academy.org/books-photos/${i + 1}.jpg`,
+				thumbnail: `/assets/img/BooksImages/${i + 1}.jpg`,
 				language: "en",
 				listPrice: {
 					amount: utilService.getRandomIntInclusive(60, 500),
 					currencyCode: currencyCode[Math.floor(Math.random() * 3)],
 					isOnSale: Math.random() > 0.7,
 				},
+				reviews: [],
 			}
 			books.push(book)
 		}
@@ -174,6 +191,7 @@ function _createBook(book = {}) {
 			currencyCode: "",
 			isOnSale: false,
 		},
+		reviews: [],
 	}
 	newBook = { ...newBook, ...book }
 	return newBook

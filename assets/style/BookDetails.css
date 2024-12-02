@@ -74,3 +74,32 @@
 	margin: 3px;
 	border-radius: 4px;
 }
+
+.book-details .review-list {
+	list-style-type: none;
+	display: grid;
+	grid-template-columns: 1rf;
+	/* margin: 20px 20px; */
+	gap: 6px;
+	grid-column: 1/-1;
+	width: 100%;
+	justify-self: center;
+}
+
+.book-details .review-list li {
+	padding: 4px;
+	border-radius: 7px;
+	border: 1px solid var(--clr1);
+	min-height: 30px;
+}
+
+.book-details .review-list .review-remove {
+	border: none;
+	color: darkgrey;
+	padding: 2px;
+}
+.book-details .review-list .review-remove:hover {
+	border: none;
+	color: darkgrey;
+	color: white;
+}
