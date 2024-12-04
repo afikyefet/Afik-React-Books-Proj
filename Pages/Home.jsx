@@ -17,7 +17,7 @@ export function Home() {
 				</h5>
 				<img
 					className="hero-img"
-					src="./assets/img/Hero photo books.webp"
+					src="/assets/img/Hero photo books.webp"
 					alt="photo of books"
 				/>
 			</div>
