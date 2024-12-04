@@ -8,6 +8,8 @@ export function BooksEdit() {
 	const navigate = useNavigate()
 	const { bookId } = useParams()
 
+	const { title } = bookToEdit
+
 	useEffect(() => {
 		if (bookId) loadBook()
 	}, [])
@@ -62,7 +64,7 @@ export function BooksEdit() {
 				<input
 					type="text"
 					onChange={handleChange}
-					value={bookToEdit.title}
+					value={title}
 					id="title"
 					name="title"
 				/>

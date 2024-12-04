@@ -4,11 +4,15 @@ import { AddReview } from "../cmps/AddReview.jsx"
 const { useParams, useNavigate, Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
+// import leftArrowIcon from '../assets/img/icons/left-arrow.png'
+
 export function BookDetails() {
-	const [book, setBook] = useState(0)
-	const [reviews, setReviews] = useState(book.reviews)
+	const [book, setBook] = useState(null)
+	const [reviews, setReviews] = useState([])
 	const params = useParams()
 	const navigate = useNavigate()
+
+	console.log(book)
 
 	useEffect(() => {
 		loadbook()
@@ -19,7 +23,7 @@ export function BookDetails() {
 			.get(params.bookId)
 			.then((book) => {
 				setBook((currentBook) => (currentBook = book))
-				setReviews((reviews) => (reviews = book.reviews))
+				if (book.reviews) setReviews((reviews) => (reviews = book.reviews))
 			})
 			.catch((err) => {
 				console.log("Problem getting book", err)
@@ -28,6 +32,7 @@ export function BookDetails() {
 
 	function setNewReview(review) {
 		setReviews((reviews) => (reviews = [review, ...reviews]))
+		// setReviews((reviews) => [review, ...reviews])
 		// console.log(review)
 		// console.log(reviews)
 		// console.log(book.reviews)
@@ -106,7 +111,7 @@ export function BookDetails() {
 				{/* <button onClick={onBack}>Back</button> */}
 				<img
 					className="icon"
-					src="../assets/img/icons/list.png"
+					src="../../Afik React Books Proj/assets/img/icons/list.png"
 					alt="Book List"
 					onClick={onBack}
 				/>
