@@ -111,7 +111,7 @@ export function BookDetails() {
 				{/* <button onClick={onBack}>Back</button> */}
 				<img
 					className="icon"
-					src="../../Afik React Books Proj/assets/img/icons/list.png"
+					src="/assets/img/icons/list.png"
 					alt="Book List"
 					onClick={onBack}
 				/>
