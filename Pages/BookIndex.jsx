@@ -47,7 +47,7 @@ export function BookIndex() {
 				<Link to="/book/edit">
 					<img
 						className="icon"
-						src="/assets/img/icons/add.png"
+						src="./assets/img/icons/add.png"
 						alt="Add book"
 					/>
 				</Link>

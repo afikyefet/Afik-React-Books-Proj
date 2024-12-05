@@ -104,14 +104,14 @@ export function BookDetails() {
 				<Link to={`/book/${book.prevBookId}`}>
 					<img
 						className="icon"
-						src="../assets/img/icons/left-arrow.png"
+						src="./assets/img/icons/left-arrow.png"
 						alt="Previous Book"
 					/>
 				</Link>
 				{/* <button onClick={onBack}>Back</button> */}
 				<img
 					className="icon"
-					src="/assets/img/icons/list.png"
+					src="./assets/img/icons/list.png"
 					alt="Book List"
 					onClick={onBack}
 				/>
@@ -121,7 +121,7 @@ export function BookDetails() {
 				<Link to={`/book/edit/${book.id}`}>
 					<img
 						className="icon"
-						src="../assets/img/icons/pencil.png"
+						src="./assets/img/icons/pencil.png"
 						alt="Edit book"
 					/>
 				</Link>
@@ -133,14 +133,14 @@ export function BookDetails() {
 					<img
 						onClick={() => onRemoveBook(book.id)}
 						className="icon"
-						src="../assets/img/icons/bin black on white.png"
+						src="./assets/img/icons/bin black on white.png"
 						alt="Nest book"
 					/>
 				</Link>
 				<Link to={`/book/${book.nextBookId}`}>
 					<img
 						className="icon"
-						src="../assets/img/icons/right-arrow.png"
+						src="./assets/img/icons/right-arrow.png"
 						alt="Nest book"
 					/>
 				</Link>

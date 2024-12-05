@@ -23,7 +23,7 @@ export function AboutUs() {
 						What We Offer?{" "}
 						<img
 							className="icon"
-							src="/assets/img/icons/arrow-down-sign-to-navigate.png"
+							src="./assets/img/icons/arrow-down-sign-to-navigate.png"
 							alt="Arrow image"
 						/>
 					</h5>
@@ -33,7 +33,7 @@ export function AboutUs() {
 						Why Choose Chapter & Verse?{" "}
 						<img
 							className="icon"
-							src="/assets/img/icons/arrow-down-sign-to-navigate.png"
+							src="./assets/img/icons/arrow-down-sign-to-navigate.png"
 							alt="Arrow image"
 						/>
 					</h5>
@@ -43,7 +43,7 @@ export function AboutUs() {
 						Join Our Bookish Community!{" "}
 						<img
 							className="icon"
-							src="/assets/img/icons/arrow-down-sign-to-navigate.png"
+							src="./assets/img/icons/arrow-down-sign-to-navigate.png"
 							alt="Arrow image"
 						/>
 					</h5>

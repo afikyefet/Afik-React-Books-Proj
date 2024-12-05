@@ -31,7 +31,7 @@ export function BookPreview({ book, onRemoveBook }) {
 			{book.listPrice.isOnSale && (
 				<img
 					className="on-sale"
-					src="/assets/img/Sale-PNG.png"
+					src="./assets/img/Sale-PNG.png"
 					alt="on sale!"
 				/>
 			)}
@@ -64,7 +64,7 @@ export function BookPreview({ book, onRemoveBook }) {
 				<button className="del-btn" onClick={() => onRemoveBook(book.id)}>
 					<img
 						className="icon"
-						src="../assets/img/icons/bin black on white.png"
+						src="./assets/img/icons/bin black on white.png"
 						alt="Delete book"
 					/>
 				</button>
@@ -75,7 +75,7 @@ export function BookPreview({ book, onRemoveBook }) {
 					<Link to={`/book/edit/${book.id}`}>
 						<img
 							className="icon"
-							src="../assets/img/icons/pencil.png"
+							src="./assets/img/icons/pencil.png"
 							alt="Edit book"
 						/>
 					</Link>

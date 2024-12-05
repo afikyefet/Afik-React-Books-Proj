@@ -5,7 +5,7 @@ export function Home() {
 		<section className="home">
 			<div className="hero-container">
 				<h2 className="hero-title">
-					Welcomee to Chapter & Verse, your ultimate destination for exploring
+					Welcome to Chapter & Verse, your ultimate destination for exploring
 					the world of books!
 				</h2>
 				<h5 className="hero-subtitle">
