@@ -12,8 +12,6 @@ export function BookDetails() {
 	const params = useParams()
 	const navigate = useNavigate()
 
-	console.log(book)
-
 	useEffect(() => {
 		loadbook()
 	}, [params.bookId])
@@ -32,10 +30,6 @@ export function BookDetails() {
 
 	function setNewReview(review) {
 		setReviews((reviews) => (reviews = [review, ...reviews]))
-		// setReviews((reviews) => [review, ...reviews])
-		// console.log(review)
-		// console.log(reviews)
-		// console.log(book.reviews)
 	}
 
 	function onRemoveBook(bookId) {
@@ -96,11 +90,7 @@ export function BookDetails() {
 	if (!book) return <div>Loading Book....</div>
 	return (
 		<section className="book-details">
-			{/* <button onClick={onBack}>Back</button> */}
 			<div className="btn-container">
-				{/* <button>
-					<Link to={`/book/${book.prevBookId}`}>Prev Book</Link>
-				</button> */}
 				<Link to={`/book/${book.prevBookId}`}>
 					<img
 						className="icon"
@@ -108,16 +98,13 @@ export function BookDetails() {
 						alt="Previous Book"
 					/>
 				</Link>
-				{/* <button onClick={onBack}>Back</button> */}
 				<img
 					className="icon"
 					src="./assets/img/icons/list.png"
 					alt="Book List"
 					onClick={onBack}
 				/>
-				{/* <button className="edit-btn">
-					<Link to={`/book/edit/${book.id}`}>Edit</Link>
-				</button> */}
+
 				<Link to={`/book/edit/${book.id}`}>
 					<img
 						className="icon"
@@ -125,10 +112,6 @@ export function BookDetails() {
 						alt="Edit book"
 					/>
 				</Link>
-
-				{/* <button>
-					<Link to={`/book/${book.nextBookId}`}>Next Book</Link>
-					</button> */}
 				<Link to={`/book/${book.nextBookId}`}>
 					<img
 						onClick={() => onRemoveBook(book.id)}

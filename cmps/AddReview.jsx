@@ -22,6 +22,7 @@ export function AddReview({ bookId, setNewReview }) {
 
 	return (
 		<section className="add-review">
+			<h2>Add a review</h2>
 			<form className="review-form" onSubmit={onSaveReview}>
 				<label className="label-full-name" htmlFor="full-name">
 					Full name:{" "}

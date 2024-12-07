@@ -17,6 +17,7 @@
 }
 .book-details .btn-container .icon {
 	width: 15px;
+	cursor: pointer;
 }
 .book-details img {
 	width: 200px;

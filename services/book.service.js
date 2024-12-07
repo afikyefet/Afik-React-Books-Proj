@@ -12,6 +12,7 @@ export const bookService = {
 	getCurrencyCodeSigh,
 	addReview,
 	removeReview,
+	getFilterFromSrcParams,
 }
 
 const STORAGE_KEY = "BooksDB"
@@ -43,14 +44,6 @@ function query(filterBy = {}) {
 		}
 		return books
 	})
-}
-
-function getDefaultFilter() {
-	return {
-		title: "",
-		publishedDate: 2025,
-		listPrice: { amount: 500, isOnSale: false },
-	}
 }
 
 async function get(bookId) {
@@ -121,6 +114,28 @@ function getCurrencyCodeSigh(currencyCode) {
 			return "$"
 		case "EUR":
 			return "€"
+	}
+}
+
+function getDefaultFilter() {
+	return {
+		title: "",
+		publishedDate: 2025,
+		listPrice: { amount: 500, isOnSale: false },
+	}
+}
+function getFilterFromSrcParams(srcParams) {
+	const title = srcParams.get("title") || ""
+	const publishedDate = srcParams.get("published") || "2025"
+	const amount = srcParams.get("price") || "500"
+	const isOnSale = srcParams.get("onSale") || ""
+	return {
+		title,
+		publishedDate,
+		listPrice: {
+			amount,
+			isOnSale,
+		},
 	}
 }
 

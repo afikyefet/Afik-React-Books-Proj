@@ -123,3 +123,14 @@ export function debounce(func, time = 500) {
 		}, time)
 	}
 }
+
+export function getTruthyValues(obj) {
+	const newObj = {}
+	for (const key in obj) {
+		const value = obj[key]
+		if (value || value === 0) {
+			newObj[key] = value
+		}
+	}
+	return newObj
+}

@@ -37,9 +37,10 @@ h6 {
 
 .book-preview .book-img {
 	grid-area: 1/1/2/-1;
-	height: 120px;
-	/* object-fit: contain; */
+	height: 180px;
 	overflow: hidden;
+	/* display: grid;
+	place-content: center; */
 }
 .book-preview .book-img img {
 	width: 100%;

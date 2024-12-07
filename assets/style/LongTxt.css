@@ -1,6 +1,5 @@
-.long-text a,
-.short-text a {
-	color: blue;
+.show-text-btn a {
+	color: grey;
 	text-decoration: underline;
 	font-size: 0.8em;
 }
