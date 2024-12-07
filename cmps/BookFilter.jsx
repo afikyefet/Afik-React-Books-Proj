@@ -8,7 +8,6 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 
 	useEffect(() => {
 		onSetFilterDebounce(filterByToEdit)
-		// console.log(filterByToEdit)
 	}, [filterByToEdit])
 
 	function handleChange({ target }) {
@@ -22,7 +21,6 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 				value = target.checked
 				break
 		}
-		// setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
 
 		if (!field.includes(".")) {
 			setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
@@ -36,14 +34,10 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 		}
 	}
 
-	function onSubmitFilter(ev) {
-		ev.preventDefault()
-		onSetFilter(filterByToEdit)
-	}
 	// const { title, listPrice } = filterByToEdit
 	return (
 		<section className="book-filter">
-			<form onSubmit={onSubmitFilter}>
+			<form>
 				<label htmlFor="title-filter">
 					Title:{" "}
 					<input

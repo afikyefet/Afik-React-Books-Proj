@@ -1,5 +1,6 @@
 import { bookService } from "../services/book.service.js"
 const { useNavigate } = ReactRouterDOM
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 const { useState, useRef } = React
 
 export function AddReview({ bookId, setNewReview }) {
@@ -17,7 +18,11 @@ export function AddReview({ bookId, setNewReview }) {
 		bookService
 			.addReview(bookId, review)
 			.then(setNewReview(review))
-			.catch((err) => console.log("Cannot Save review", err))
+			.then(showSuccessMsg("review added successfully"))
+			.catch((err) => {
+				console.log("Cannot Save review", err)
+				showErrorMsg("review could not be saved")
+			})
 	}
 
 	return (

@@ -1,4 +1,3 @@
-import { BooksFilter } from "./BookFilter.jsx"
 import { BookPreview } from "./BookPreview.jsx"
 
 export function BookList({ books, onRemoveBook }) {

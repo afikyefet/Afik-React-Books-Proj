@@ -2,6 +2,7 @@ import { bookService } from "../services/book.service.js"
 import { BookList } from "../cmps/BookList.jsx"
 import { BooksFilter } from "../cmps/BookFilter.jsx"
 import { getTruthyValues } from "../services/util.service.js"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 
 const { useEffect, useState } = React
 const { Link, useSearchParams } = ReactRouterDOM
@@ -31,9 +32,11 @@ export function BookIndex() {
 			.then(() => {
 				setBooks((books) => books.filter((book) => book.id !== bookId))
 				console.log("book was deleted")
+				showSuccessMsg("book was deleted successfully")
 			})
 			.catch((err) => {
 				console.log("Problems removing book:", err)
+				showErrorMsg("book could not be deleted")
 			})
 	}
 

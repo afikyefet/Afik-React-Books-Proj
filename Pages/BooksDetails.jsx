@@ -1,6 +1,7 @@
 import { bookService } from "../services/book.service.js"
 import { LongTxt } from "../cmps/LongTxt.jsx"
 import { AddReview } from "../cmps/AddReview.jsx"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 const { useParams, useNavigate, Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
@@ -22,9 +23,11 @@ export function BookDetails() {
 			.then((book) => {
 				setBook((currentBook) => (currentBook = book))
 				if (book.reviews) setReviews((reviews) => (reviews = book.reviews))
+				showSuccessMsg("books loaded successffully")
 			})
 			.catch((err) => {
 				console.log("Problem getting book", err)
+				showErrorMsg("could not load book")
 			})
 	}
 
@@ -37,9 +40,11 @@ export function BookDetails() {
 			.remove(bookId)
 			.then(() => {
 				console.log("book was deleted")
+				showSuccessMsg("book was deleted successfully")
 			})
 			.catch((err) => {
 				console.log("Problems removing book:", err)
+				showErrorMsg("book could not be deleted")
 			})
 	}
 
@@ -51,9 +56,11 @@ export function BookDetails() {
 					reviews.filter((review) => review.id !== reviewId)
 				)
 				console.log("review was deleted")
+				showSuccessMsg("review was deleted")
 			})
 			.catch((err) => {
 				console.log("Problems removing review:", err)
+				showErrorMsg("Problems removing review")
 			})
 	}
 
