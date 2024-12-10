@@ -163,7 +163,7 @@ async function _CreateBooks() {
 				categories: [
 					ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)],
 				],
-				thumbnail: `/assets/img/BooksImages/${i + 1}.jpg`,
+				thumbnail: `./assets/img/BooksImages/${i + 1}.jpg`,
 				language: "en",
 				listPrice: {
 					amount: utilService.getRandomIntInclusive(60, 500),
@@ -260,7 +260,7 @@ function getGoogleBookFormat(gBook) {
 		thumbnail:
 			thumbnail ||
 			smallThumbnail ||
-			"/assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg",
+			"./assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg",
 		language: language,
 		listPrice: {
 			amount: utilService.getRandomIntInclusive(30, 500),
@@ -300,7 +300,7 @@ function getGoogleBooksFormat(gBooks = []) {
 			thumbnail:
 				thumbnail ||
 				smallThumbnail ||
-				"/assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg",
+				"./assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg",
 			language: language,
 			listPrice: {
 				amount: utilService.getRandomIntInclusive(30, 500),
