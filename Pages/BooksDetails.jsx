@@ -35,6 +35,19 @@ export function BookDetails() {
 		setReviews((reviews) => (reviews = [review, ...reviews]))
 	}
 
+	function getRatingInStars(rating) {
+		return [...Array(5)].map((star, idx) => {
+			const currentRate = idx + 1
+			return (
+				<i
+					key={`star-${idx}`}
+					className="fa-solid fa-star star"
+					style={{ color: currentRate <= rating ? "yellow" : "grey" }}
+				></i>
+			)
+		})
+	}
+
 	function onRemoveBook(bookId) {
 		bookService
 			.remove(bookId)
@@ -174,7 +187,9 @@ export function BookDetails() {
 							X
 						</button>
 						<h4 className="review-name">Full name: {review.fullname}</h4>
-						<h4 className="review-rate">Rating: {review.rating}</h4>
+						<h4 className="review-rate">
+							Rating: {getRatingInStars(review.rating)}
+						</h4>
 						<span className="review-readat">
 							Book was read at: {review.readAt}
 						</span>

@@ -35,5 +35,6 @@ export function StarRate({ setRatingFromReview }) {
 				)
 			})}
 		</section>
+		
 	)
 }
