@@ -143,9 +143,8 @@ export function BookDetails() {
 				{book.authors} , {book.publishedDate}
 			</h4>
 			<ul className="book-categories">
-				{book.categories.map((cat) => (
-					<li key={cat}>{cat.toLowerCase()}</li>
-				))}
+				{book.categories &&
+					book.categories.map((cat) => <li key={cat}>{cat.toLowerCase()}</li>)}
 				{isVintageTag(book.publishedDate)}
 			</ul>
 			<h5 className="book-lang">Book language: {book.language}</h5>

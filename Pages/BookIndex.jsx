@@ -18,6 +18,7 @@ export function BookIndex() {
 	useEffect(() => {
 		setSearchParams(getTruthyValues(filterBy))
 		loadBooks()
+		console.log("render")
 	}, [filterBy])
 
 	function loadBooks() {
@@ -56,7 +57,7 @@ export function BookIndex() {
 	return (
 		<section className="book-index">
 			<BooksFilter defaultFilter={filterBy} onSetFilter={onSetFilter} />
-			<BookAdd setNewGoogleBook={setNewGoogleBook} />
+			<BookAdd setNewGoogleBook={setNewGoogleBook} Books={books} />
 			<section className="add-btn">
 				<Link to="/book/edit">
 					<img

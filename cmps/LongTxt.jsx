@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 
-export function LongTxt({ txt, length = 100 }) {
+export function LongTxt({ txt = " ", length = 100 }) {
 	const [isLong, setIsLong] = useState(false)
 
 	function toggleIsLong() {
@@ -11,7 +11,7 @@ export function LongTxt({ txt, length = 100 }) {
 	const shortText =
 		isLong || !isTextTooLong ? txt : txt.substring(0, length) + "..."
 
-	if (!shortText) return <div>Loading</div>
+	if (!shortText) return <span>loading</span>
 	return (
 		<React.Fragment>
 			<span className="txt">{shortText}</span>

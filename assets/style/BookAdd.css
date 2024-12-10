@@ -1,18 +1,27 @@
 .book-add {
 	margin: 0 auto;
+	margin-bottom: 12px;
 	display: grid;
 	grid-template-columns: 1fr auto;
 	grid-template-rows: auto auto;
-	border: 2px solid var(--clr1);
+	/* border: 2px solid var(--clr1); */
 }
 
 .book-add form {
 	grid-area: 1/1/1/-1;
+	place-self: center;
+	padding: 0.5em;
+	background-color: var(--clr1bg);
 }
 
 .book-add .result-list {
 	list-style-type: none;
 	overflow-y: scroll;
+}
+
+.book-add .result {
+	display: flex;
+	justify-content: space-between;
 }
 
 .book-add .result-list .result:hover {
@@ -22,5 +31,4 @@
 .book-add .icon {
 	width: 12px;
 	height: 12px;
-	margin-left: auto;
 }

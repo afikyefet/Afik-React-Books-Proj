@@ -1,9 +1,10 @@
 import { bookService } from "../services/book.service.js"
 import { googleService } from "../services/GoogleBook.service.js"
 import { debounce } from "../services/util.service.js"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 const { useState, useEffect, useRef } = React
 
-export function BookAdd({ setNewGoogleBook }) {
+export function BookAdd({ setNewGoogleBook, Books }) {
 	const [titleToSearch, setTitleToSearch] = useState("")
 	const [searchResults, setSearchResults] = useState([])
 	const onSetTitleDebounce = useRef(debounce(getGoogleBooks)).current
@@ -16,8 +17,27 @@ export function BookAdd({ setNewGoogleBook }) {
 		onSetTitleDebounce(titleToSearch)
 	}, [titleToSearch])
 
+	useEffect(() => {
+		console.log(searchResults)
+	}, [searchResults])
+
 	function saveGoogleBook(book) {
-		bookService.saveGoogleBook(book).then((book) => setNewGoogleBook(book))
+		if (
+			!Books.some(
+				(existingBook) =>
+					existingBook.title === book.volumeInfo.title &&
+					existingBook.id === book.id
+			)
+		) {
+			bookService
+				.addGoogleBook(book)
+				.then((book) => setNewGoogleBook(book))
+				.then(showSuccessMsg("book saved successfully"))
+				.catch((err) => {
+					showErrorMsg("could not save this book")
+					console.error(err)
+				})
+		}
 	}
 
 	function handleChange({ target }) {
@@ -46,16 +66,19 @@ export function BookAdd({ setNewGoogleBook }) {
 					id="book-title"
 					name="book-title"
 					className="book-title"
-					placeholder="Search for Title"
+					placeholder="Search for Title on google"
 				></input>
 			</form>
 			{searchResults.length > 0 && (
 				<ul className="result-list">
 					{searchResults.map((book) => (
 						<li className="result" key={book.id}>
-							{book.volumeInfo.title || "Untitled"}{" "}
+							<span className="result-title">
+								{book.volumeInfo.title || "Untitled"}{" "}
+							</span>
 							<img
 								src="./assets/img/icons/add.png"
+								alt="Add title"
 								className="book-add-btn icon"
 								onClick={() => saveGoogleBook(book)}
 							/>

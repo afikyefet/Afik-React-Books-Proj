@@ -14,7 +14,7 @@ export const bookService = {
 	addReview,
 	removeReview,
 	getFilterFromSrcParams,
-	saveGoogleBook,
+	addGoogleBook,
 }
 
 const STORAGE_KEY = "BooksDB"
@@ -223,7 +223,7 @@ async function getGoogleBooks() {
 		.catch((err) => console.error("could not get books from google api " + err))
 }
 
-async function saveGoogleBook(gBook) {
+async function addGoogleBook(gBook) {
 	const book = getGoogleBookFormat(gBook)
 	// console.log(book)
 
@@ -243,7 +243,7 @@ function getGoogleBookFormat(gBook) {
 			description,
 			pageCount,
 			categories,
-			imageLinks: { thumbnail = null },
+			imageLinks: { thumbnail = null, smallThumbnail = null },
 			language,
 		},
 	} = gBook
@@ -259,6 +259,7 @@ function getGoogleBookFormat(gBook) {
 		categories: categories,
 		thumbnail:
 			thumbnail ||
+			smallThumbnail ||
 			`/assets/img/BooksImages/${utilService.getRandomIntInclusive(1, 20)}.jpg`,
 		language: language,
 		listPrice: {
@@ -286,6 +287,8 @@ function getGoogleBooksFormat(gBooks = []) {
 				language,
 			},
 		} = book
+		console.log(smallThumbnail, thumbnail)
+
 		return {
 			id: id,
 			title: title,

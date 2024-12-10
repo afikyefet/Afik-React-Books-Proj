@@ -1,21 +1,11 @@
 .book-list {
 	display: flex;
-	/* grid-template-columns: repeat(auto-fit, auto);
-	grid-template-rows: repeat(auto-fit, auto); */
-	/* grid-template-rows: repeat(4, 1fr); */
 	flex-wrap: wrap;
-	/* align-items: stretch; */
 	width: 90%;
 	margin: auto;
 }
 
 .book-list li {
 	list-style-type: none;
+	margin: 6px;
 }
-
-/* .book-list button {
-	opacity: 1;
-	font-weight: 800;
-	font-size: 11px;
-	border-radius: 14px;
-} */
