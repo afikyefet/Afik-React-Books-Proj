@@ -1,18 +1,25 @@
 import { bookService } from "../services/book.service.js"
-const { useNavigate } = ReactRouterDOM
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+import { StarRate } from "./StarRate.jsx"
+const { useNavigate } = ReactRouterDOM
 const { useState, useRef } = React
 
 export function AddReview({ bookId, setNewReview }) {
+	const [rating, setRating] = useState(null)
 	const fullNameRef = useRef()
 	const ratingRef = useRef()
 	const dateRef = useRef()
+
+	function setRatingFromReview(num) {
+		setRating((rate) => (rate = num))
+		return rating
+	}
 
 	function onSaveReview(ev) {
 		ev.preventDefault()
 		const review = {
 			fullname: fullNameRef.current.value,
-			rating: ratingRef.current.value,
+			rating: rating,
 			readAt: dateRef.current.value,
 		}
 		bookService
@@ -43,7 +50,11 @@ export function AddReview({ bookId, setNewReview }) {
 				<label className="label-rating" htmlFor="rating">
 					Rating:{" "}
 				</label>
-				<input
+				<StarRate
+					className="rating"
+					setRatingFromReview={setRatingFromReview}
+				/>
+				{/* <input
 					ref={ratingRef}
 					id="rating"
 					className="rating"
@@ -51,10 +62,10 @@ export function AddReview({ bookId, setNewReview }) {
 					min="1"
 					max="5"
 					step="1"
-					value={5}
+					defaultValue={5}
 					required
 					title="Only digits 0-5 are allowed"
-				></input>
+				></input> */}
 				<label className="label-read-at" htmlFor="read-at">
 					Read at:{" "}
 				</label>
@@ -63,7 +74,7 @@ export function AddReview({ bookId, setNewReview }) {
 					id="read-at"
 					className="read-at"
 					type="date"
-					value="2024-01-01"
+					defaultValue="2024-01-01"
 					required
 				></input>
 				<button className="btn-rate">Rate</button>

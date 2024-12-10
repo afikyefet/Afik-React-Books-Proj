@@ -14,10 +14,10 @@ export function BookDetails() {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		loadbook()
+		loadBooks()
 	}, [params.bookId])
 
-	function loadbook() {
+	function loadBooks() {
 		bookService
 			.get(params.bookId)
 			.then((book) => {
@@ -136,7 +136,7 @@ export function BookDetails() {
 				</Link>
 			</div>
 
-			<img src={book.thumbnail} alt="" />
+			<img src={book.thumbnail} alt="book thumbnail" />
 			<h2 className="book-title">{book.title}</h2>
 			<h1 className="book-subtitle">{book.subtitle}</h1>
 			<h4 className="book-authors">
@@ -173,7 +173,7 @@ export function BookDetails() {
 						>
 							X
 						</button>
-						<h5 className="review-name">Full name: {review.fullname}</h5>
+						<h4 className="review-name">Full name: {review.fullname}</h4>
 						<h4 className="review-rate">Rating: {review.rating}</h4>
 						<span className="review-readat">
 							Book was read at: {review.readAt}
