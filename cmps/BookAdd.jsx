@@ -18,7 +18,7 @@ export function BookAdd({ setNewGoogleBook, Books }) {
 	}, [titleToSearch])
 
 	useEffect(() => {
-		console.log(searchResults)
+		// console.log(searchResults)
 	}, [searchResults])
 
 	function saveGoogleBook(book) {

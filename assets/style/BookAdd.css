@@ -11,7 +11,8 @@
 	grid-area: 1/1/1/-1;
 	place-self: center;
 	padding: 0.5em;
-	background-color: var(--clr1bg);
+	background-color: var(--clr1bg-light);
+	border-radius: 7px;
 }
 
 .book-add .result-list {

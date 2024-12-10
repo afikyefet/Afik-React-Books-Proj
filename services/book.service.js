@@ -30,18 +30,18 @@ function query(filterBy = {}) {
 			books = books.filter((book) => regExp.test(book.title))
 		}
 
-		if (filterBy.listPrice && filterBy.listPrice.amount >= 0) {
+		if (filterBy.amount >= 0) {
 			books = books.filter((book) => {
-				return book.listPrice.amount < filterBy.listPrice.amount
+				return book.listPrice.amount < filterBy.amount
 			})
 		}
-		if (filterBy.publishedDate) {
+		if (filterBy.publishedDate < 2025) {
 			books = books.filter((book) => {
 				return book.publishedDate < filterBy.publishedDate
 			})
 		}
 
-		if (filterBy.listPrice && filterBy.listPrice.isOnSale) {
+		if (filterBy.isOnSale) {
 			books = books.filter(({ listPrice }) => listPrice.isOnSale)
 		}
 		return books
@@ -64,8 +64,9 @@ function save(book, isEdit = true) {
 		if (book.categories && book.categories.typeof !== "object") {
 			book.categories = book.categories.slice(", ")
 		}
-		book.thumbnail =
-			"/assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg"
+		if (!book.thumbnail)
+			book.thumbnail =
+				"/assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg"
 		return storageService.post(STORAGE_KEY, book)
 	}
 }
@@ -123,7 +124,8 @@ function getDefaultFilter() {
 	return {
 		title: "",
 		publishedDate: 2025,
-		listPrice: { amount: 500, isOnSale: false },
+		amount: 500,
+		isOnSale: false,
 	}
 }
 function getFilterFromSrcParams(srcParams) {
@@ -134,10 +136,8 @@ function getFilterFromSrcParams(srcParams) {
 	return {
 		title,
 		publishedDate,
-		listPrice: {
-			amount,
-			isOnSale,
-		},
+		amount,
+		isOnSale,
 	}
 }
 
@@ -243,7 +243,7 @@ function getGoogleBookFormat(gBook) {
 			description,
 			pageCount,
 			categories,
-			imageLinks: { thumbnail = null, smallThumbnail = null },
+			imageLinks: { thumbnail, smallThumbnail },
 			language,
 		},
 	} = gBook
@@ -260,7 +260,7 @@ function getGoogleBookFormat(gBook) {
 		thumbnail:
 			thumbnail ||
 			smallThumbnail ||
-			`/assets/img/BooksImages/${utilService.getRandomIntInclusive(1, 20)}.jpg`,
+			"/assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg",
 		language: language,
 		listPrice: {
 			amount: utilService.getRandomIntInclusive(30, 500),
@@ -283,11 +283,10 @@ function getGoogleBooksFormat(gBooks = []) {
 				description,
 				pageCount,
 				categories,
-				imageLinks: { thumbnail = null },
+				imageLinks: { thumbnail, smallThumbnail },
 				language,
 			},
 		} = book
-		console.log(smallThumbnail, thumbnail)
 
 		return {
 			id: id,
@@ -300,10 +299,8 @@ function getGoogleBooksFormat(gBooks = []) {
 			categories: categories,
 			thumbnail:
 				thumbnail ||
-				`/assets/img/BooksImages/${utilService.getRandomIntInclusive(
-					1,
-					20
-				)}.jpg`,
+				smallThumbnail ||
+				"/assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg",
 			language: language,
 			listPrice: {
 				amount: utilService.getRandomIntInclusive(30, 500),

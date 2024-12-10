@@ -22,16 +22,7 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 				break
 		}
 
-		if (!field.includes(".")) {
-			setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
-		} else {
-			const [obj, nested] = field.split(".")
-			// console.log(obj)
-			setFilterByToEdit((prevFilter) => ({
-				...prevFilter,
-				[obj]: { ...prevFilter[obj], [nested]: value },
-			}))
-		}
+		setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
 	}
 
 	// const { title, listPrice } = filterByToEdit
@@ -54,15 +45,15 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 					Price:
 					<input
 						ref={rangeRef}
-						value={filterByToEdit.listPrice.amount}
+						value={filterByToEdit.amount}
 						type="range"
 						max={500}
 						id="price-filter"
-						name="listPrice.amount"
+						name="amount"
 						className="price-filter"
 						onChange={handleChange}
 					/>
-					{filterByToEdit.listPrice.amount}
+					{filterByToEdit.amount}
 				</label>
 				<label htmlFor="date-filter">
 					Up untill:
@@ -85,9 +76,9 @@ export function BooksFilter({ defaultFilter, onSetFilter }) {
 						type="checkbox"
 						onChange={handleChange}
 						id="isOnSale"
-						checked={filterByToEdit.listPrice.isOnSale}
-						value={filterByToEdit.listPrice.isOnSale}
-						name="listPrice.isOnSale"
+						checked={filterByToEdit.isOnSale}
+						value={filterByToEdit.isOnSale}
+						name="isOnSale"
 					/>
 				</label>
 				{/* <button>Submit</button> */}

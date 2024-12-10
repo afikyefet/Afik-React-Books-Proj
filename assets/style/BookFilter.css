@@ -12,3 +12,7 @@
 	background-color: var(--clr1bg-light);
 	max-width: 900px;
 }
+
+.book-filter input {
+	accent-color: var(--clr1);
+}
