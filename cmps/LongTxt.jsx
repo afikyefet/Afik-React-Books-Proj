@@ -7,7 +7,7 @@ export function LongTxt({ txt, length = 100 }) {
 		setIsLong((long) => !long)
 	}
 
-	const isTextTooLong = txt.length > length
+	const isTextTooLong = txt && txt.length > length
 	const shortText =
 		isLong || !isTextTooLong ? txt : txt.substring(0, length) + "..."
 

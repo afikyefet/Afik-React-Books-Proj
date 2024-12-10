@@ -3,11 +3,11 @@
 	/* height: 80px; */
 	text-align: center;
 	color: rgb(255, 255, 255);
-	position: absolute;
+	position: fixed;
 	background-color: gainsboro;
 	display: flex;
 	align-items: center;
-	bottom: 0;
+	bottom: 20px;
 	left: 50%;
 	border-radius: 12px;
 	padding: 5px 10px;
@@ -20,7 +20,7 @@
 }
 
 .success {
-	background-color: rgb(147, 255, 147);
+	background-color: rgb(123, 221, 123);
 }
 
 .error {

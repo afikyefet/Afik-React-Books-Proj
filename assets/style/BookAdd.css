@@ -1,0 +1,19 @@
+.book-add {
+	margin: 0 auto;
+	border: 2px solid var(--clr1);
+}
+
+.book-add .result-list {
+	list-style-type: none;
+	overflow-y: scroll;
+}
+
+.book-add .result-list .result:hover {
+	background-color: var(--clr1);
+}
+
+.book-add .icon {
+	width: 12px;
+	height: 12px;
+	margin-left: auto;
+}

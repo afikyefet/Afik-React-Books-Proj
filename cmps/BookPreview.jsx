@@ -47,9 +47,8 @@ export function BookPreview({ book, onRemoveBook }) {
 				{book.authors}, {book.publishedDate}
 			</h5>
 			<ul className="book-categories">
-				{book.categories.map((cat) => (
-					<li key={cat}>{cat.toLowerCase()}</li>
-				))}
+				{book.categories &&
+					book.categories.map((cat) => <li key={cat}>{cat.toLowerCase()}</li>)}
 				{isVintageTag(book.publishedDate)}
 			</ul>
 			{/* <h5>{book.pageCount}</h5> */}

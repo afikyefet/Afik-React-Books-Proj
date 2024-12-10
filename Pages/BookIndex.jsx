@@ -1,6 +1,7 @@
 import { bookService } from "../services/book.service.js"
 import { BookList } from "../cmps/BookList.jsx"
 import { BooksFilter } from "../cmps/BookFilter.jsx"
+import { BookAdd } from "../cmps/BookAdd.jsx"
 import { getTruthyValues } from "../services/util.service.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 
@@ -47,10 +48,15 @@ export function BookIndex() {
 		}))
 	}
 
+	function setNewGoogleBook(book) {
+		setBooks((books) => [...books, book])
+	}
+
 	if (!books) return <div>Loading....</div>
 	return (
 		<section className="book-index">
 			<BooksFilter defaultFilter={filterBy} onSetFilter={onSetFilter} />
+			<BookAdd setNewGoogleBook={setNewGoogleBook} />
 			<section className="add-btn">
 				<Link to="/book/edit">
 					<img

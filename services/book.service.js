@@ -1,5 +1,6 @@
 import { storageService } from "./async-storage.service.js"
 import { utilService } from "./util.service.js"
+import { googleService } from "./GoogleBook.service.js"
 
 export const bookService = {
 	query,
@@ -13,6 +14,7 @@ export const bookService = {
 	addReview,
 	removeReview,
 	getFilterFromSrcParams,
+	saveGoogleBook,
 }
 
 const STORAGE_KEY = "BooksDB"
@@ -55,11 +57,11 @@ function remove(bookId) {
 	return storageService.remove(STORAGE_KEY, bookId)
 }
 
-function save(book) {
-	if (book.id) {
+function save(book, isEdit = true) {
+	if (book.id && isEdit) {
 		return storageService.put(STORAGE_KEY, book)
 	} else {
-		if (book.categories.typeof !== "object") {
+		if (book.categories && book.categories.typeof !== "object") {
 			book.categories = book.categories.slice(", ")
 		}
 		book.thumbnail =
@@ -210,4 +212,103 @@ function _createBook(book = {}) {
 	}
 	newBook = { ...newBook, ...book }
 	return newBook
+}
+
+async function getGoogleBooks() {
+	await googleService
+		.query()
+		.then((books) => {
+			return books.items
+		})
+		.catch((err) => console.error("could not get books from google api " + err))
+}
+
+async function saveGoogleBook(gBook) {
+	const book = getGoogleBookFormat(gBook)
+	// console.log(book)
+
+	await save(book, false)
+	return book
+}
+
+function getGoogleBookFormat(gBook) {
+	const currencyCode = getCurrencyCodes()
+	const {
+		id,
+		volumeInfo: {
+			title,
+			subtitle = "",
+			authors,
+			publishedDate,
+			description,
+			pageCount,
+			categories,
+			imageLinks: { thumbnail = null },
+			language,
+		},
+	} = gBook
+
+	return {
+		id: id,
+		title: title,
+		subtitle: subtitle,
+		authors: authors,
+		publishedDate: publishedDate,
+		description: description,
+		pageCount: pageCount,
+		categories: categories,
+		thumbnail:
+			thumbnail ||
+			`/assets/img/BooksImages/${utilService.getRandomIntInclusive(1, 20)}.jpg`,
+		language: language,
+		listPrice: {
+			amount: utilService.getRandomIntInclusive(30, 500),
+			currencyCode: currencyCode[Math.floor(Math.random() * 3)],
+			isOnSale: Math.random() > 0.7,
+		},
+	}
+}
+
+function getGoogleBooksFormat(gBooks = []) {
+	const currencyCode = getCurrencyCodes()
+	const books = gBooks.map((book) => {
+		const {
+			id,
+			volumeInfo: {
+				title,
+				subtitle = "",
+				authors,
+				publishedDate,
+				description,
+				pageCount,
+				categories,
+				imageLinks: { thumbnail = null },
+				language,
+			},
+		} = book
+		return {
+			id: id,
+			title: title,
+			subtitle: subtitle,
+			authors: authors,
+			publishedDate: publishedDate,
+			description: description,
+			pageCount: pageCount,
+			categories: categories,
+			thumbnail:
+				thumbnail ||
+				`/assets/img/BooksImages/${utilService.getRandomIntInclusive(
+					1,
+					20
+				)}.jpg`,
+			language: language,
+			listPrice: {
+				amount: utilService.getRandomIntInclusive(30, 500),
+				currencyCode: currencyCode[Math.floor(Math.random() * 3)],
+				isOnSale: Math.random() > 0.7,
+			},
+		}
+	})
+
+	return books
 }
