@@ -37,6 +37,8 @@ export function AddReview({ bookId, setNewReview }) {
 					id="full-name"
 					className="full-name"
 					type="text"
+					placeholder="Full Name"
+					required
 				></input>
 				<label className="label-rating" htmlFor="rating">
 					Rating:{" "}
@@ -46,7 +48,11 @@ export function AddReview({ bookId, setNewReview }) {
 					id="rating"
 					className="rating"
 					type="number"
-					pattern="[0-5]*"
+					min="1"
+					max="5"
+					step="1"
+					value={5}
+					required
 					title="Only digits 0-5 are allowed"
 				></input>
 				<label className="label-read-at" htmlFor="read-at">
@@ -57,6 +63,8 @@ export function AddReview({ bookId, setNewReview }) {
 					id="read-at"
 					className="read-at"
 					type="date"
+					value="2024-01-01"
+					required
 				></input>
 				<button className="btn-rate">Rate</button>
 			</form>
