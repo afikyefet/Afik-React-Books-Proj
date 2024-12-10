@@ -1,6 +1,13 @@
 .book-add {
 	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-template-rows: auto auto;
 	border: 2px solid var(--clr1);
+}
+
+.book-add form {
+	grid-area: 1/1/1/-1;
 }
 
 .book-add .result-list {
