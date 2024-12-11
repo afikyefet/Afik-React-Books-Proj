@@ -15,6 +15,7 @@ export function BookDetails() {
 
 	useEffect(() => {
 		loadBooks()
+		console.log()
 	}, [params.bookId])
 
 	function loadBooks() {
@@ -33,6 +34,14 @@ export function BookDetails() {
 
 	function setNewReview(review) {
 		setReviews((reviews) => (reviews = [review, ...reviews]))
+	}
+
+	function setRatingAsType(rateType, rating) {
+		if (rateType === "stars") {
+			return getRatingInStars(rating)
+		} else if (rateType === "text" || rateType === "select") {
+			return rating
+		}
 	}
 
 	function getRatingInStars(rating) {
@@ -187,9 +196,11 @@ export function BookDetails() {
 							X
 						</button>
 						<h4 className="review-name">Full name: {review.fullname}</h4>
-						<h4 className="review-rate">
-							Rating: {getRatingInStars(review.rating)}
-						</h4>
+						{
+							<h4 className="review-rate">
+								Rating: {setRatingAsType(review.rateType, review.rating)}
+							</h4>
+						}
 						<span className="review-readat">
 							Book was read at: {review.readAt}
 						</span>

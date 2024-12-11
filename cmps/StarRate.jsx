@@ -22,7 +22,7 @@ export function StarRate({ setRatingFromReview }) {
 								key={`input ${idx}`}
 								onClick={() => {
 									setRating(currentRate)
-									setRatingFromReview(currentRate)
+									setRatingFromReview(currentRate, "stars")
 								}}
 							/>
 							<i
@@ -35,6 +35,5 @@ export function StarRate({ setRatingFromReview }) {
 				)
 			})}
 		</section>
-		
 	)
 }

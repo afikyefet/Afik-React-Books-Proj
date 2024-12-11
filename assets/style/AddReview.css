@@ -14,6 +14,12 @@
 	margin-bottom: 12px;
 }
 
+.add-review .rate-selector {
+	display: flex;
+	place-self: center;
+	margin: 7px;
+}
+
 .review-form {
 	display: grid;
 	grid-template-columns: auto auto;

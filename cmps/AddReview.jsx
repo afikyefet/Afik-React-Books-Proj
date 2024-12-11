@@ -1,17 +1,19 @@
 import { bookService } from "../services/book.service.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { StarRate } from "./StarRate.jsx"
-const { useNavigate } = ReactRouterDOM
+import { TextRate } from "./TextRate.jsx"
+import { SelectRate } from "./SelectRate.jsx"
 const { useState, useRef } = React
 
 export function AddReview({ bookId, setNewReview }) {
-	const [rating, setRating] = useState(null)
+	const [rating, setRating] = useState({})
+	const [cmpType, setCmpType] = useState("stars")
 	const fullNameRef = useRef()
 	const ratingRef = useRef()
 	const dateRef = useRef()
 
-	function setRatingFromReview(num) {
-		setRating((rate) => (rate = num))
+	function setRatingFromReview(num, rateType) {
+		setRating((rating) => (rating = { rate: num, rateType: rateType }))
 		return rating
 	}
 
@@ -19,7 +21,8 @@ export function AddReview({ bookId, setNewReview }) {
 		ev.preventDefault()
 		const review = {
 			fullname: fullNameRef.current.value,
-			rating: rating,
+			rating: rating.rate,
+			rateType: rating.rateType,
 			readAt: dateRef.current.value,
 		}
 		bookService
@@ -35,6 +38,15 @@ export function AddReview({ bookId, setNewReview }) {
 	return (
 		<section className="add-review">
 			<h2>Add a review</h2>
+			<select
+				className="rate-selector"
+				value={cmpType}
+				onChange={(ev) => setCmpType(ev.target.value)}
+			>
+				<option value="stars">Stars</option>
+				<option value="text">Number</option>
+				<option value="selection">Selection</option>
+			</select>
 			<form className="review-form" onSubmit={onSaveReview}>
 				<label className="label-full-name" htmlFor="full-name">
 					Full name:{" "}
@@ -50,22 +62,11 @@ export function AddReview({ bookId, setNewReview }) {
 				<label className="label-rating" htmlFor="rating">
 					Rating:{" "}
 				</label>
-				<StarRate
-					className="rating"
+				<DynamicCmp
 					setRatingFromReview={setRatingFromReview}
-				/>
-				{/* <input
-					ref={ratingRef}
-					id="rating"
+					cmpType={cmpType}
 					className="rating"
-					type="number"
-					min="1"
-					max="5"
-					step="1"
-					defaultValue={5}
-					required
-					title="Only digits 0-5 are allowed"
-				></input> */}
+				/>
 				<label className="label-read-at" htmlFor="read-at">
 					Read at:{" "}
 				</label>
@@ -81,4 +82,14 @@ export function AddReview({ bookId, setNewReview }) {
 			</form>
 		</section>
 	)
+}
+
+function DynamicCmp({ cmpType, ...restOfProps }) {
+	const dynCmpMap = {
+		stars: <StarRate {...restOfProps} />,
+		text: <TextRate {...restOfProps} />,
+		selection: <SelectRate {...restOfProps} />,
+	}
+
+	return dynCmpMap[cmpType]
 }
