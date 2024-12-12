@@ -15,6 +15,8 @@ export const bookService = {
 	removeReview,
 	getFilterFromSrcParams,
 	addGoogleBook,
+	normalizeCategories,
+	createRandomBook,
 }
 
 const STORAGE_KEY = "BooksDB"
@@ -62,7 +64,7 @@ function save(book, isEdit = true) {
 		return storageService.put(STORAGE_KEY, book)
 	} else {
 		if (book.categories && book.categories.typeof !== "object") {
-			book.categories = book.categories.slice(", ")
+			book.categories = normalizeCategories(book.categories)
 		}
 		if (!book.thumbnail)
 			book.thumbnail =
@@ -191,7 +193,29 @@ function _setNextPrevBookId(book) {
 	})
 }
 
-function _createBook(book = {}) {
+function createRandomBook(book = {}) {
+	const newBook = {
+		id: utilService.makeId(),
+		title: utilService.makeLorem(2),
+		subtitle: utilService.makeLorem(4),
+		authors: [utilService.makeLorem(1)],
+		publishedDate: utilService.getRandomIntInclusive(1950, 2024),
+		description: utilService.makeLorem(20),
+		pageCount: utilService.getRandomIntInclusive(20, 800),
+		categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
+		thumbnail: `./assets/img/BooksImages/${i + 1}.jpg`,
+		language: "en",
+		listPrice: {
+			amount: utilService.getRandomIntInclusive(60, 500),
+			currencyCode: currencyCode[Math.floor(Math.random() * 3)],
+			isOnSale: Math.random() > 0.7,
+		},
+		reviews: [],
+	}
+	newBook = { ...newBook, ...book }
+	return newBook
+}
+function _createEmptyBook(book = {}) {
 	const newBook = {
 		id: utilService.makeId(),
 		title: "",
@@ -230,6 +254,15 @@ async function addGoogleBook(gBook) {
 	await save(book, false)
 	return book
 }
+function normalizeCategories(categories) {
+	if (!categories) return []
+	if (Array.isArray(categories)) {
+		return categories.flatMap((cat) =>
+			cat.split(",").map((item) => item.trim())
+		)
+	}
+	return categories.split(",").map((cat) => cat.trim())
+}
 
 function getGoogleBookFormat(gBook) {
 	const currencyCode = getCurrencyCodes()
@@ -247,15 +280,6 @@ function getGoogleBookFormat(gBook) {
 			language,
 		},
 	} = gBook
-	function normalizeCategories(categories) {
-		if (!categories) return []
-		if (Array.isArray(categories)) {
-			return categories.flatMap((cat) =>
-				cat.split(",").map((item) => item.trim())
-			)
-		}
-		return categories.split(",").map((cat) => cat.trim())
-	}
 	return {
 		id: id,
 		title: title,
@@ -304,7 +328,7 @@ function getGoogleBooksFormat(gBooks = []) {
 			publishedDate: publishedDate,
 			description: description,
 			pageCount: pageCount,
-			categories: [...categories] || [],
+			categories: normalizeCategories(categories) || [],
 			thumbnail:
 				thumbnail ||
 				smallThumbnail ||

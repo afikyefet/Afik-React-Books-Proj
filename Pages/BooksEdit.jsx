@@ -34,7 +34,7 @@ export function BooksEdit() {
 				value = target.checked
 				break
 		}
-		// setBookToEdit((prevBook) => ({ ...prevBook, [field]: value }))
+
 		if (!field.includes(".")) {
 			setBookToEdit((prevBook) => ({ ...prevBook, [field]: value }))
 		} else {

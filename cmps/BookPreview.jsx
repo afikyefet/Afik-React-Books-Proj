@@ -4,7 +4,7 @@ import { utilService } from "../services/util.service.js"
 export function BookPreview({ book, onRemoveBook }) {
 	function onBookRemove(el) {
 		const bookElement = el.currentTarget.parentElement.parentElement
-		utilService.animateCSS(bookElement, "backOutUp", false).then(() => {
+		utilService.animateCSS(bookElement, "rollOut", false).then(() => {
 			onRemoveBook(book.id)
 		})
 	}
