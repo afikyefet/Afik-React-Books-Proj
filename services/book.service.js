@@ -247,7 +247,15 @@ function getGoogleBookFormat(gBook) {
 			language,
 		},
 	} = gBook
-
+	function normalizeCategories(categories) {
+		if (!categories) return []
+		if (Array.isArray(categories)) {
+			return categories.flatMap((cat) =>
+				cat.split(",").map((item) => item.trim())
+			)
+		}
+		return categories.split(",").map((cat) => cat.trim())
+	}
 	return {
 		id: id,
 		title: title,
@@ -256,7 +264,7 @@ function getGoogleBookFormat(gBook) {
 		publishedDate: publishedDate,
 		description: description,
 		pageCount: pageCount,
-		categories: categories || [],
+		categories: normalizeCategories(categories) || [],
 		thumbnail:
 			thumbnail ||
 			smallThumbnail ||
