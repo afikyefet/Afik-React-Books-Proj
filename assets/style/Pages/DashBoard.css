@@ -1,0 +1,24 @@
+.dash-board {
+	background-color: var(--clr1);
+	height: 600px;
+	width: 95%;
+	margin: 30px auto;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	justify-content: space-evenly;
+	border-radius: 10px;
+}
+
+.dash-board div {
+	background-color: var(--clr1bg-light);
+	width: 100%;
+	margin: 0 2%;
+	height: 50px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: 600;
+	color: var(--Neutral-Accent);
+}

@@ -17,6 +17,9 @@ export function AppHeader() {
 					<NavLink className="NavLink" to="/book">
 						Books
 					</NavLink>
+					<NavLink className="NavLink" to="/dashboard">
+						Dashboard
+					</NavLink>
 				</nav>
 			</section>
 		</header>

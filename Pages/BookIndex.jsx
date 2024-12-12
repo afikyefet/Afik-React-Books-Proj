@@ -1,4 +1,5 @@
 import { bookService } from "../services/book.service.js"
+import { utilService } from "../services/util.service.js"
 import { BookList } from "../cmps/BookList.jsx"
 import { BooksFilter } from "../cmps/BookFilter.jsx"
 import { BookAdd } from "../cmps/BookAdd.jsx"
@@ -18,7 +19,6 @@ export function BookIndex() {
 	useEffect(() => {
 		setSearchParams(getTruthyValues(filterBy))
 		loadBooks()
-		console.log("render")
 	}, [filterBy])
 
 	function loadBooks() {

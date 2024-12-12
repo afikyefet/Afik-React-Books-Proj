@@ -24,7 +24,7 @@ export function BookDetails() {
 			.then((book) => {
 				setBook((currentBook) => (currentBook = book))
 				if (book.reviews) setReviews((reviews) => (reviews = book.reviews))
-				showSuccessMsg("books loaded successffully")
+				showSuccessMsg("books loaded successfully")
 			})
 			.catch((err) => {
 				console.log("Problem getting book", err)

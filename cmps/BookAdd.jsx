@@ -1,6 +1,6 @@
 import { bookService } from "../services/book.service.js"
 import { googleService } from "../services/GoogleBook.service.js"
-import { debounce } from "../services/util.service.js"
+import { debounce, utilService } from "../services/util.service.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 const { useState, useEffect, useRef } = React
 
@@ -17,11 +17,9 @@ export function BookAdd({ setNewGoogleBook, Books }) {
 		onSetTitleDebounce(titleToSearch)
 	}, [titleToSearch])
 
-	useEffect(() => {
-		// console.log(searchResults)
-	}, [searchResults])
+	useEffect(() => {}, [searchResults])
 
-	function saveGoogleBook(book) {
+	function saveGoogleBook(book, ev) {
 		if (
 			!Books.some(
 				(existingBook) =>
@@ -37,6 +35,9 @@ export function BookAdd({ setNewGoogleBook, Books }) {
 					showErrorMsg("could not save this book")
 					console.error(err)
 				})
+		} else {
+			utilService.animateCSS(ev.currentTarget.parentElement, "headShake")
+			showErrorMsg("This book is already in your list!")
 		}
 	}
 
@@ -80,7 +81,7 @@ export function BookAdd({ setNewGoogleBook, Books }) {
 								src="./assets/img/icons/add.png"
 								alt="Add title"
 								className="book-add-btn icon"
-								onClick={() => saveGoogleBook(book)}
+								onClick={(ev) => saveGoogleBook(book, ev)}
 							/>
 						</li>
 					))}

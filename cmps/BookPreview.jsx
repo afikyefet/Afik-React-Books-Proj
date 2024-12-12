@@ -1,6 +1,14 @@
 const { Link } = ReactRouterDOM
+import { utilService } from "../services/util.service.js"
 
 export function BookPreview({ book, onRemoveBook }) {
+	function onBookRemove(el) {
+		const bookElement = el.currentTarget.parentElement.parentElement
+		utilService.animateCSS(bookElement, "backOutUp", false).then(() => {
+			onRemoveBook(book.id)
+		})
+	}
+
 	function isVintageTag(publishedDate) {
 		if (publishedDate < 2015) {
 			return <li className="publishedDate">vintage</li>
@@ -60,7 +68,7 @@ export function BookPreview({ book, onRemoveBook }) {
 				{/* {book.listPrice.isOnSale ? " On Sale!" : ""} */}
 			</h4>
 			<div className="btn-container">
-				<button className="del-btn" onClick={() => onRemoveBook(book.id)}>
+				<button className="del-btn" onClick={(el) => onBookRemove(el)}>
 					<img
 						className="icon"
 						src="./assets/img/icons/bin black on white.png"

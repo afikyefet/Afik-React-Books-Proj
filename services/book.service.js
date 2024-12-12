@@ -256,7 +256,7 @@ function getGoogleBookFormat(gBook) {
 		publishedDate: publishedDate,
 		description: description,
 		pageCount: pageCount,
-		categories: categories,
+		categories: categories || [],
 		thumbnail:
 			thumbnail ||
 			smallThumbnail ||
@@ -296,7 +296,7 @@ function getGoogleBooksFormat(gBooks = []) {
 			publishedDate: publishedDate,
 			description: description,
 			pageCount: pageCount,
-			categories: categories,
+			categories: [...categories] || [],
 			thumbnail:
 				thumbnail ||
 				smallThumbnail ||

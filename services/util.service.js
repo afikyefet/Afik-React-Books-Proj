@@ -99,14 +99,15 @@ function getMonthName(date) {
 	return monthNames[date.getMonth()]
 }
 
-function animateCSS(el, animation = "bounce") {
+function animateCSS(el, animation = "", isRemoveClass = true) {
 	const prefix = "animate__"
 	return new Promise((resolve, reject) => {
 		const animationName = `${prefix}${animation}`
 		el.classList.add(`${prefix}animated`, animationName)
+
 		function handleAnimationEnd(event) {
 			event.stopPropagation()
-			el.classList.remove(`${prefix}animated`, animationName)
+			if (isRemoveClass) el.classList.remove(`${prefix}animated`, animationName)
 			resolve("Animation ended")
 		}
 
