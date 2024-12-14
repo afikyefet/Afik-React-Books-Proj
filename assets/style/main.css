@@ -3,21 +3,21 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-@import url(/assets/style/cmps/AppHeader.css);
-@import url(/assets/style/cmps/BooksPreview.css);
-@import url(/assets/style/cmps/BooksList.css);
-@import url(/assets/style/pages/BookDetails.css);
-@import url(/assets/style/pages/BooksEdit.css);
-@import url(/assets/style/pages/BookIndex.css);
-@import url(/assets/style/cmps/BookFilter.css);
-@import url(/assets/style/pages/Home.css);
-@import url(/assets/style/pages/AboutUs.css);
-@import url(/assets/style/cmps/LongTxt.css);
-@import url(/assets/style/cmps/AddReview.css);
-@import url(/assets/style/cmps/UserMsg.css);
-@import url(/assets/style/cmps/BookAdd.css);
-@import url(/assets/style/cmps/StarRate.css);
-@import url(/assets/style/pages/DashBoard.css);
+@import url(./cmps/AppHeader.css);
+@import url(./cmps/BooksPreview.css);
+@import url(./cmps/BooksList.css);
+@import url(./pages/BookDetails.css);
+@import url(./pages/BooksEdit.css);
+@import url(./pages/BookIndex.css);
+@import url(./cmps/BookFilter.css);
+@import url(./pages/Home.css);
+@import url(./pages/AboutUs.css);
+@import url(./cmps/LongTxt.css);
+@import url(./cmps/AddReview.css);
+@import url(./cmps/UserMsg.css);
+@import url(./cmps/BookAdd.css);
+@import url(./cmps/StarRate.css);
+@import url(./pages/DashBoard.css);
 
 /* Vars */
 :root {
