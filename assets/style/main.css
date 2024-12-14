@@ -6,18 +6,18 @@
 @import url(./cmps/AppHeader.css);
 @import url(./cmps/BooksPreview.css);
 @import url(./cmps/BooksList.css);
-@import url(./pages/BookDetails.css);
-@import url(./pages/BooksEdit.css);
-@import url(./pages/BookIndex.css);
+@import url(.Pages/BookDetails.css);
+@import url(.Pages/BooksEdit.css);
+@import url(.Pages/BookIndex.css);
 @import url(./cmps/BookFilter.css);
-@import url(./pages/Home.css);
-@import url(./pages/AboutUs.css);
+@import url(.Pages/Home.css);
+@import url(.Pages/AboutUs.css);
 @import url(./cmps/LongTxt.css);
 @import url(./cmps/AddReview.css);
 @import url(./cmps/UserMsg.css);
 @import url(./cmps/BookAdd.css);
 @import url(./cmps/StarRate.css);
-@import url(./pages/DashBoard.css);
+@import url(.Pages/DashBoard.css);
 
 /* Vars */
 :root {
